@@ -74,7 +74,6 @@ class TractiveGPS extends utils.Adapter {
       }
     } else {
       this.writeLog(`[Adapter v.${this.version} onReady] email and password are required`, "error");
-      this.terminate("email and password are required");
     }
     this.writeLog(`[Adapter v.${this.version} onReady] start requestData`, "debug");
   }
