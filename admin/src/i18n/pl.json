@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "E-mail",
+	"emailInput_invalid_email": "Nieprawidłowy e-mail",
+	"emailInput_valid_email": "Ważny e-mail",
+	"settings_interval": "interwał",
+	"settings_interval_tooltip": "Tutaj można ustawić interwał pollingu dla adaptera. Domyślnym ustawieniem jest 60 sekund.",
+	"settings_login": "Login",
+	"settings_password": "Hasło"
+}

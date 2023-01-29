@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "Email",
+	"emailInput_invalid_email": "Ongeldige e-mail",
+	"emailInput_valid_email": "Geldige e-mail",
+	"settings_interval": "interval",
+	"settings_interval_tooltip": "Hier kunt u het pollinginterval voor de adapter instellen. De standaardinstelling is 60 seconden.",
+	"settings_login": "Inloggen",
+	"settings_password": "Wachtwoord"
+}

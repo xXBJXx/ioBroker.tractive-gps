@@ -1,0 +1,124 @@
+{
+	"common": {
+		"name": "tractive-gps",
+		"version": "0.0.0",
+		"news": {},
+		"title": "Tractive GPS",
+		"titleLang": {
+			"en": "Tractive GPS",
+			"de": "Tractive GPS",
+			"ru": "Tractive GPS",
+			"pt": "Tractive GPS",
+			"nl": "Tractive GPS",
+			"fr": "Tractive GPS",
+			"it": "Tractive GPS",
+			"es": "Tractive GPS",
+			"pl": "Tractive GPS",
+			"uk": "Tractive GPS",
+			"zh-cn": "Tractive GPS"
+		},
+		"desc": {
+			"en": "",
+			"de": "",
+			"ru": "",
+			"pt": "",
+			"nl": "",
+			"fr": "",
+			"it": "",
+			"es": "",
+			"pl": "",
+			"uk": "",
+			"zh-cn": ""
+		},
+		"authors": ["xXBJXx <issi.dev.iobroker@gmail.com>"],
+		"keywords": [],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "build/main.js",
+		"icon": "tractive-gps.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/xXBJXx/ioBroker.tractive-gps/main/admin/tractive-gps.png",
+		"readme": "https://github.com/xXBJXx/ioBroker.tractive-gps/blob/main/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "geoposition",
+		"compact": true,
+		"connectionType": "local",
+		"dataSource": "poll",
+		"materializeTab": true,
+		"messagebox": false,
+		"singleton": true,
+		"stopBeforeUpdate": true,
+		"adminUI": {
+			"config": "materialize",
+			"tab": "materialize"
+		},
+		"adminTab": {
+			"singleton": true,
+			"name": {
+				"en": "Tractive GPS",
+				"de": "Tractive GPS",
+				"ru": "Tractive GPS",
+				"pt": "Tractive GPS",
+				"nl": "Tractive GPS",
+				"fr": "Tractive GPS",
+				"it": "Tractive GPS",
+				"es": "Tractive GPS",
+				"pl": "Tractive GPS",
+				"uk": "Tractive GPS",
+				"zh-cn": "Tractive GPS"
+			},
+			"link": "",
+			"fa-icon": "info"
+		},
+		"eraseOnUpload": true,
+		"dependencies": [
+			{
+				"js-controller": ">=3.3.22"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=5.0.0"
+			}
+		]
+	},
+	"plugins": {
+		"sentry": {
+			"dsn": "https://a3cc76cdce9f4e74b52390d60fd75278@o384969.ingest.sentry.io/4504555481530368"
+		}
+	},
+	"protectedNative": ["access_token"],
+	"native": {
+		"interval": 60,
+		"email": "",
+		"password": "",
+		"access_token": "",
+		"expires_at": 0,
+		"user_id": ""
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "info",
+			"type": "channel",
+			"common": {
+				"name": "Information"
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.connection",
+			"type": "state",
+			"common": {
+				"role": "indicator.connected",
+				"name": "Device or service connected",
+				"type": "boolean",
+				"read": true,
+				"write": false,
+				"def": false
+			},
+			"native": {}
+		}
+	]
+}

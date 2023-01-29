@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "Correio electrónico",
+	"emailInput_invalid_email": "E-mail inválido",
+	"emailInput_valid_email": "E-mail válido",
+	"settings_interval": "intervalo",
+	"settings_interval_tooltip": "Aqui pode definir o intervalo de sondagem para o adaptador. A definição por defeito é de 60 segundos.",
+	"settings_login": "Login",
+	"settings_password": "Senha"
+}

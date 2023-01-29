@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "Courriel :",
+	"emailInput_invalid_email": "Courriel non valide",
+	"emailInput_valid_email": "Courriel valide",
+	"settings_interval": "intervalle",
+	"settings_interval_tooltip": "Vous pouvez définir ici l'intervalle d'interrogation de l'adaptateur. Le paramètre par défaut est de 60 secondes.",
+	"settings_login": "Connexion",
+	"settings_password": "Mot de passe"
+}

@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "Електронна пошта",
+	"emailInput_invalid_email": "Неправильна адреса електронної пошти",
+	"emailInput_valid_email": "Дійсний email",
+	"settings_interval": "інтервал",
+	"settings_interval_tooltip": "Aqui pode definir o intervalo de sondagem para o adaptador. A definição por defeito é de 60 segundos.",
+	"settings_login": "Логін",
+	"settings_password": "Пароль"
+}

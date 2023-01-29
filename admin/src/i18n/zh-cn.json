@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "电子邮件",
+	"emailInput_invalid_email": "无效的电子邮件",
+	"emailInput_valid_email": "有效的电子邮件",
+	"settings_interval": "间隔",
+	"settings_interval_tooltip": "在这里你可以设置适配器的轮询时间间隔。默认设置是60秒。",
+	"settings_login": "登录",
+	"settings_password": "密码"
+}

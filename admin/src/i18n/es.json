@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "Correo electrónico",
+	"emailInput_invalid_email": "Correo electrónico no válido",
+	"emailInput_valid_email": "Correo electrónico válido",
+	"settings_interval": "intervalo",
+	"settings_interval_tooltip": "Aquí puede establecer el intervalo de sondeo del adaptador. El ajuste por defecto es de 60 segundos.",
+	"settings_login": "Inicio de sesión",
+	"settings_password": "Contraseña"
+}

@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "E-Mail",
+	"emailInput_invalid_email": "Ungültige E-Mail",
+	"emailInput_valid_email": "Gültige E-Mail",
+	"settings_interval": "Intervall",
+	"settings_interval_tooltip": "Hier können Sie das Abfrageintervall für den Adapter einstellen. Die Standardeinstellung ist 60 Sekunden.",
+	"settings_login": "Anmeldung",
+	"settings_password": "Passwort"
+}

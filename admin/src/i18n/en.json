@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "E-mail",
+	"emailInput_invalid_email": "Invalid email",
+	"emailInput_valid_email": "Valid email",
+	"settings_interval": "Interval",
+	"settings_interval_tooltip": "Here you can set the polling interval for the adapter. The default setting is 60 seconds.",
+	"settings_login": "Login",
+	"settings_password": "Password"
+}

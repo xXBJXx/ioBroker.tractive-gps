@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "Электронная почта",
+	"emailInput_invalid_email": "Неверный email",
+	"emailInput_valid_email": "Действительная электронная почта",
+	"settings_interval": "интервал",
+	"settings_interval_tooltip": "Здесь можно задать интервал опроса адаптера. По умолчанию установлено значение 60 секунд.",
+	"settings_login": "Вход в систему",
+	"settings_password": "Пароль"
+}

@@ -1,0 +1,9 @@
+{
+	"emailInput_email": "E-mail",
+	"emailInput_invalid_email": "Email non valida",
+	"emailInput_valid_email": "Email valida",
+	"settings_interval": "intervallo",
+	"settings_interval_tooltip": "Qui è possibile impostare l'intervallo di polling per l'adattatore. L'impostazione predefinita è 60 secondi.",
+	"settings_login": "Accesso",
+	"settings_password": "Password"
+}
