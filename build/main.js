@@ -61,6 +61,7 @@ class TractiveGPS extends utils.Adapter {
           this.allData.userInfo.user_id = this.config.user_id;
           this.allData.userInfo.expires_at = this.config.expires_at;
           await this.createCronjob();
+          this.writeLog(`[Adapter v.${this.version} onReady] start requestData`, "debug");
           await this.requestData();
           this.setState("info.connection", true, true);
         }
@@ -75,7 +76,6 @@ class TractiveGPS extends utils.Adapter {
     } else {
       this.writeLog(`[Adapter v.${this.version} onReady] email and password are required`, "error");
     }
-    this.writeLog(`[Adapter v.${this.version} onReady] start requestData`, "debug");
   }
   async createCronjob() {
     this.writeLog(`[Adapter v.${this.version} createCronjob] create cronjob`, "debug");
@@ -492,10 +492,19 @@ class TractiveGPS extends utils.Adapter {
           }
         }
       } catch (error) {
-        this.writeLog(
-          `[Adapter v.${this.version} Axios V: ${import_axios.default.VERSION}  getTrackerDeviceHwReport] error: ${error}`,
-          "error"
-        );
+        if (error.response && error.response.data.code === 4002) {
+          this.writeLog(
+            `[Adapter v.${this.version} Axios V: ${import_axios.default.VERSION}  getTrackerDeviceHwReport] warn: ${JSON.stringify(
+              error.response.data.message
+            )} - the tracker does not yet contain any data`,
+            "warn"
+          );
+        } else {
+          this.writeLog(
+            `[Adapter v.${this.version} Axios V: ${import_axios.default.VERSION}  getTrackerDeviceHwReport] error: ${error}`,
+            "error"
+          );
+        }
       }
     }
   }
@@ -533,10 +542,19 @@ class TractiveGPS extends utils.Adapter {
           }
         }
       } catch (error) {
-        this.writeLog(
-          `[Adapter v.${this.version} Axios V: ${import_axios.default.VERSION}  getTrackerLocation] error: ${error}`,
-          "error"
-        );
+        if (error.response && error.response.data.code === 4002) {
+          this.writeLog(
+            `[Adapter v.${this.version} Axios V: ${import_axios.default.VERSION}  getTrackerLocation] warn: ${JSON.stringify(
+              error.response.data.message
+            )} - the tracker does not yet contain any data`,
+            "warn"
+          );
+        } else {
+          this.writeLog(
+            `[Adapter v.${this.version} Axios V: ${import_axios.default.VERSION}  getTrackerLocation] error: ${error}`,
+            "error"
+          );
+        }
       }
     }
   }

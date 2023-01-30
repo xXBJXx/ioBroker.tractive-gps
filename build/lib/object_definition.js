@@ -54,8 +54,8 @@ const stateAttrb = {
     name: "Clip Mounted State",
     desc: "Clip Mounted State of the device",
     type: "string",
-    role: "indicator",
-    def: "null",
+    role: "value",
+    def: null,
     read: true,
     write: false
   },
@@ -131,6 +131,25 @@ const stateAttrb = {
     read: true,
     write: false
   },
+  hw_edition: {
+    name: "Hardware Edition",
+    desc: "Hardware Edition of the device",
+    type: "string",
+    role: "value",
+    def: "null",
+    read: true,
+    write: false
+  },
+  course: {
+    name: "Course",
+    desc: "Course of the device",
+    type: "number",
+    role: "value",
+    def: 0,
+    unit: "\xB0",
+    read: true,
+    write: false
+  },
   model_number: {
     name: "Model Number",
     desc: "Model Number of the device",
@@ -161,9 +180,9 @@ const stateAttrb = {
   battery_save_mode: {
     name: "Battery Save Mode",
     desc: "Battery Save Mode of the device",
-    type: "string",
-    role: "value",
-    def: "null",
+    type: "boolean",
+    role: "indicator",
+    def: null,
     read: true,
     write: false
   },
@@ -173,6 +192,15 @@ const stateAttrb = {
     type: "boolean",
     role: "indicator",
     def: false,
+    read: true,
+    write: false
+  },
+  read_only_since: {
+    name: "Read Only Since",
+    desc: "Read Only Since of the device",
+    type: "number",
+    role: "value.time",
+    def: 0,
     read: true,
     write: false
   },
@@ -278,7 +306,7 @@ const stateAttrb = {
     name: "Position Status",
     desc: "Position Status of the device",
     type: "string",
-    role: "value",
+    role: "json",
     def: "null",
     read: true,
     write: false
