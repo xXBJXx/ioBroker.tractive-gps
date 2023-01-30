@@ -100,7 +100,7 @@ const stateAttrb = {
     desc: "Power Saving Zone ID of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -109,7 +109,7 @@ const stateAttrb = {
     desc: "Hardware Status of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -118,7 +118,7 @@ const stateAttrb = {
     desc: "Hardware ID of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -127,7 +127,7 @@ const stateAttrb = {
     desc: "Hardware Type of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -136,7 +136,7 @@ const stateAttrb = {
     desc: "Hardware Edition of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -155,7 +155,7 @@ const stateAttrb = {
     desc: "Model Number of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -164,7 +164,7 @@ const stateAttrb = {
     desc: "Bluetooth MAC of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -173,7 +173,7 @@ const stateAttrb = {
     desc: "Geofence Sensitivity of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -244,7 +244,7 @@ const stateAttrb = {
     desc: "Firmware Version of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -253,7 +253,7 @@ const stateAttrb = {
     desc: "State of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -262,7 +262,7 @@ const stateAttrb = {
     desc: "State Reason of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -271,7 +271,7 @@ const stateAttrb = {
     desc: "Charging State of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -280,7 +280,7 @@ const stateAttrb = {
     desc: "Battery State of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -289,7 +289,7 @@ const stateAttrb = {
     desc: "Positions Array of the device",
     type: "string",
     role: "json",
-    def: "[]",
+    def: null,
     read: true,
     write: false
   },
@@ -298,7 +298,7 @@ const stateAttrb = {
     desc: "Sensor Used of the device",
     type: "string",
     role: "value",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -307,7 +307,7 @@ const stateAttrb = {
     desc: "Position Status of the device",
     type: "string",
     role: "json",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },
@@ -316,7 +316,7 @@ const stateAttrb = {
     desc: "Latitude/Longitude of the device",
     type: "string",
     role: "json",
-    def: "null",
+    def: null,
     read: true,
     write: false
   },

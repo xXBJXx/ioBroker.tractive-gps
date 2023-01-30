@@ -135,7 +135,7 @@ class TractiveGPS extends utils.Adapter {
 		for (const device of this.allData.tracker) {
 			for (const [key, value] of Object.entries(device)) {
 				// if key is capabilities and supported_geofence_types then write the data with JSON.stringify
-				if (key === 'capabilities' || key === 'supported_geofence_types') {
+				if (typeof value === 'object' && value !== null) {
 					await this.setStateAsync(`${device._id}.tracker.${key}`, {
 						val: JSON.stringify(value),
 						ack: true,
@@ -147,7 +147,14 @@ class TractiveGPS extends utils.Adapter {
 		}
 		for (const device of this.allData.device_hw_report) {
 			for (const [key, value] of Object.entries(device)) {
-				await this.setStateAsync(`${device._id}.device_hw_report.${key}`, { val: value, ack: true });
+				if (typeof value === 'object' && value !== null) {
+					await this.setStateAsync(`${device._id}.device_hw_report.${key}`, {
+						val: JSON.stringify(value),
+						ack: true,
+					});
+				} else {
+					await this.setStateAsync(`${device._id}.device_hw_report.${key}`, { val: value, ack: true });
+				}
 			}
 		}
 		for (const device of this.allData.device_pos_report) {
@@ -167,7 +174,14 @@ class TractiveGPS extends utils.Adapter {
 						ack: true,
 					});
 				} else {
-					await this.setStateAsync(`${device._id}.device_pos_report.${key}`, { val: value, ack: true });
+					if (typeof value === 'object' && value !== null) {
+						await this.setStateAsync(`${device._id}.device_pos_report.${key}`, {
+							val: JSON.stringify(value),
+							ack: true,
+						});
+					} else {
+						await this.setStateAsync(`${device._id}.device_pos_report.${key}`, { val: value, ack: true });
+					}
 				}
 			}
 
