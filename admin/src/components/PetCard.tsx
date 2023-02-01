@@ -157,6 +157,16 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 							// 	paddingRight: '15px',
 							// }}
 						>
+							radius:
+						</Typography>
+						<Typography
+							gutterBottom
+							color="text.secondary"
+							// sx={{
+							// 	marginRight: '15px',
+							// 	paddingRight: '15px',
+							// }}
+						>
 							last seen:
 						</Typography>
 						<Typography
@@ -224,6 +234,16 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 							// }}
 						>
 							{item.latlong ? item.latlong[1] : 'loading...'}
+						</Typography>
+						<Typography
+							gutterBottom
+							color="text.secondary"
+							// sx={{
+							// 	marginLeft: '15px',
+							// 	paddingLeft: '15px',
+							// }}
+						>
+							{item.radius ? `${item.radius}m` : 'loading...'}
 						</Typography>
 						<Typography
 							gutterBottom
