@@ -1,9 +1,23 @@
 {
+	"actions": "Acciones",
+	"apiToken_accessToken": "Ficha de acceso",
+	"apiToken_refresh": "Actualizar",
+	"apiToken_refreshed": "El servidor ha generado un nuevo token de API.",
+	"cancel": "cancelar",
+	"date/time": "Fecha / Hora",
+	"dateTime_token_expires_tooltip": "El vale caduca el",
+	"deviceID": "ID del dispositivo",
+	"deviceName": "Nombre del dispositivo",
+	"edit": "editar",
 	"emailInput_email": "Correo electrónico",
 	"emailInput_invalid_email": "Correo electrónico no válido",
 	"emailInput_valid_email": "Correo electrónico válido",
+	"modal_deviceName_tooltip": "Cambia el nombre del dispositivo que aparece en los objetos.",
+	"modal_edit_titel": "Cambiar el nombre de %s",
+	"settings_devices": "Todos los dispositivos",
 	"settings_interval": "intervalo",
 	"settings_interval_tooltip": "Aquí puede establecer el intervalo de sondeo del adaptador. El ajuste por defecto es de 60 segundos.",
 	"settings_login": "Inicio de sesión",
-	"settings_password": "Contraseña"
+	"settings_password": "Contraseña",
+	"settings_token": "Información sobre fichas"
 }

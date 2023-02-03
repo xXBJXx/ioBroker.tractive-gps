@@ -1,9 +1,23 @@
 {
+	"actions": "Actions",
+	"apiToken_accessToken": "Jeton d'accès",
+	"apiToken_refresh": "Rafraîchir",
+	"apiToken_refreshed": "Un nouveau jeton API a été généré par le serveur.",
+	"cancel": "annuler",
+	"date/time": "Date / Heure",
+	"dateTime_token_expires_tooltip": "Le jeton expire le",
+	"deviceID": "ID de l'appareil",
+	"deviceName": "Nom du dispositif",
+	"edit": "modifier",
 	"emailInput_email": "Courriel :",
 	"emailInput_invalid_email": "Courriel non valide",
 	"emailInput_valid_email": "Courriel valide",
+	"modal_deviceName_tooltip": "Modifiez le nom du périphérique affiché dans les objets.",
+	"modal_edit_titel": "Changez le nom de %s",
+	"settings_devices": "Tous les appareils",
 	"settings_interval": "intervalle",
 	"settings_interval_tooltip": "Vous pouvez définir ici l'intervalle d'interrogation de l'adaptateur. Le paramètre par défaut est de 60 secondes.",
 	"settings_login": "Connexion",
-	"settings_password": "Mot de passe"
+	"settings_password": "Mot de passe",
+	"settings_token": "Informations sur les jetons"
 }

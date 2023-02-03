@@ -1,9 +1,23 @@
 {
+	"actions": "Azioni",
+	"apiToken_accessToken": "Gettone di accesso",
+	"apiToken_refresh": "Aggiornare",
+	"apiToken_refreshed": "Il server ha generato un nuovo token API.",
+	"cancel": "annullare",
+	"date/time": "Data / Ora",
+	"dateTime_token_expires_tooltip": "Il gettone scade il",
+	"deviceID": "ID dispositivo",
+	"deviceName": "Nome del dispositivo",
+	"edit": "modifica",
 	"emailInput_email": "E-mail",
 	"emailInput_invalid_email": "Email non valida",
 	"emailInput_valid_email": "Email valida",
+	"modal_deviceName_tooltip": "Modificare il nome del dispositivo visualizzato negli oggetti.",
+	"modal_edit_titel": "Cambiare il nome di %s",
+	"settings_devices": "Tutti i dispositivi",
 	"settings_interval": "intervallo",
 	"settings_interval_tooltip": "Qui è possibile impostare l'intervallo di polling per l'adattatore. L'impostazione predefinita è 60 secondi.",
 	"settings_login": "Accesso",
-	"settings_password": "Password"
+	"settings_password": "Password",
+	"settings_token": "Informazioni sul gettone"
 }

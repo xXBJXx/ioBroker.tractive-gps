@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Circle, MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { Box } from '@mui/material';
-import { useGlobals } from 'iobroker-react/hooks';
 import { ItemProps } from '../tab';
 
 interface MapsProps {
@@ -10,14 +9,21 @@ interface MapsProps {
 }
 
 export const Maps: React.FC<MapsProps> = ({ item }): JSX.Element => {
-	const { namespace } = useGlobals();
 	if (item.latlong === undefined) {
 		item.latlong = [0, 0];
 	}
 	if (item.radius === undefined) {
 		item.radius = 0;
 	}
-	const [map, setMap] = React.useState<[number, number]>([item.latlong[0], item.latlong[1]]);
+	// const [map, setMap] = React.useState<[number, number]>([item.latlong[0], item.latlong[1]]);
+
+	const map = useMemo((): [number, number] => {
+		if (item.latlong) {
+			return [item.latlong[0], item.latlong[1]];
+		} else {
+			return [0, 0];
+		}
+	}, [item.latlong]);
 
 	return (
 		<Box

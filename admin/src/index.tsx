@@ -7,8 +7,6 @@ import type { Translations } from 'iobroker-react/i18n';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SettingPage } from './SettingPage';
-import { Logo } from 'iobroker-react';
-import { Stack } from '@mui/material';
 
 // Components are imported here
 
@@ -29,17 +27,11 @@ const SettingsPageContent: React.FC = React.memo(() => {
 			[option]: value,
 		}));
 	};
+
 	const [systemConfigObj] = useIoBrokerObject('system.config');
-	const secret = systemConfigObj?.native?.secret || 'Zgfr56gFe87jJOM';
+	const secret = systemConfigObj?.native?.secret;
 	return (
 		<React.Fragment>
-			<Stack spacing={2}>
-				<Logo
-					classes={{
-						logo: 'logo',
-					}}
-				/>
-			</Stack>
 			<SettingPage
 				settings={settings}
 				secret={secret}
@@ -54,6 +46,24 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 	// In this case, option1 will be set to true by default
 	if (settings.interval === undefined) {
 		settings.interval = 60;
+	}
+	if (settings.email === undefined) {
+		settings.email = '';
+	}
+	if (settings.password === undefined) {
+		settings.password = '';
+	}
+	if (settings.access_token === undefined) {
+		settings.access_token = '';
+	}
+	if (settings.expires_at === undefined) {
+		settings.expires_at = 0;
+	}
+	if (settings.user_id === undefined) {
+		settings.user_id = '';
+	}
+	if (settings.nameArray === undefined) {
+		settings.nameArray = [];
 	}
 };
 

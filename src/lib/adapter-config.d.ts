@@ -10,6 +10,11 @@ declare global {
 			access_token: string;
 			expires_at: number;
 			user_id: string;
+			nameArray: NameArray[];
+		}
+		interface NameArray {
+			name: string;
+			id: string;
 		}
 	}
 }

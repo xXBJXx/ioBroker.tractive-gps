@@ -1,9 +1,23 @@
 {
+	"actions": "行动",
+	"apiToken_accessToken": "访问令牌",
+	"apiToken_refresh": "刷新",
+	"apiToken_refreshed": "服务器生成了一个新的API令牌。",
+	"cancel": "取消",
+	"date/time": "日期/时间",
+	"dateTime_token_expires_tooltip": "代币到期日为",
+	"deviceID": "设备ID",
+	"deviceName": "设备名称",
+	"edit": "编辑",
 	"emailInput_email": "电子邮件",
 	"emailInput_invalid_email": "无效的电子邮件",
 	"emailInput_valid_email": "有效的电子邮件",
+	"modal_deviceName_tooltip": "改变对象中显示的设备名称。",
+	"modal_edit_titel": "更改%s的名称",
+	"settings_devices": "所有设备",
 	"settings_interval": "间隔",
 	"settings_interval_tooltip": "在这里你可以设置适配器的轮询时间间隔。默认设置是60秒。",
 	"settings_login": "登录",
-	"settings_password": "密码"
+	"settings_password": "密码",
+	"settings_token": "代币信息"
 }

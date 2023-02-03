@@ -1,9 +1,23 @@
 {
+	"actions": "Діяльність",
+	"apiToken_accessToken": "Токен доступу",
+	"apiToken_refresh": "Оновити",
+	"apiToken_refreshed": "Сервер згенерував новий токен API.",
+	"cancel": "скасувати",
+	"date/time": "Дата / Час",
+	"dateTime_token_expires_tooltip": "Термін дії токену закінчується",
+	"deviceID": "Ідентифікатор пристрою",
+	"deviceName": "Назва пристрою",
+	"edit": "редагувати",
 	"emailInput_email": "Електронна пошта",
 	"emailInput_invalid_email": "Неправильна адреса електронної пошти",
 	"emailInput_valid_email": "Дійсний email",
+	"modal_deviceName_tooltip": "Змінити назву пристрою, що відображається в об'єктах.",
+	"modal_edit_titel": "Змінити назву %s",
+	"settings_devices": "Всі пристрої",
 	"settings_interval": "інтервал",
 	"settings_interval_tooltip": "Aqui pode definir o intervalo de sondagem para o adaptador. A definição por defeito é de 60 segundos.",
 	"settings_login": "Логін",
-	"settings_password": "Пароль"
+	"settings_password": "Пароль",
+	"settings_token": "Інформація про токен"
 }

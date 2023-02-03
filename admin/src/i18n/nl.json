@@ -1,9 +1,23 @@
 {
+	"actions": "Acties",
+	"apiToken_accessToken": "Toegangstoken",
+	"apiToken_refresh": "Vernieuwen",
+	"apiToken_refreshed": "De server heeft een nieuw API-token gegenereerd.",
+	"cancel": "annuleren",
+	"date/time": "Datum / Tijd",
+	"dateTime_token_expires_tooltip": "Token verlopen op",
+	"deviceID": "Apparaat ID",
+	"deviceName": "Naam apparaat",
+	"edit": "edit",
 	"emailInput_email": "Email",
 	"emailInput_invalid_email": "Ongeldige e-mail",
 	"emailInput_valid_email": "Geldige e-mail",
+	"modal_deviceName_tooltip": "Wijzig de apparaatnaam die in de objecten wordt weergegeven.",
+	"modal_edit_titel": "Verander de naam van %s",
+	"settings_devices": "Alle apparaten",
 	"settings_interval": "interval",
 	"settings_interval_tooltip": "Hier kunt u het pollinginterval voor de adapter instellen. De standaardinstelling is 60 seconden.",
 	"settings_login": "Inloggen",
-	"settings_password": "Wachtwoord"
+	"settings_password": "Wachtwoord",
+	"settings_token": "Token Informatie"
 }

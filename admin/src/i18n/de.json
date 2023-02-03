@@ -1,9 +1,23 @@
 {
+	"actions": "Aktionen",
+	"apiToken_accessToken": "Zugangs-Token",
+	"apiToken_refresh": "aktualisieren",
+	"apiToken_refreshed": "Ein neues API-Token wurde vom Server generiert.",
+	"cancel": "abbrechen",
+	"date/time": "Datum / Uhrzeit",
+	"dateTime_token_expires_tooltip": "Token verfällt am",
+	"deviceID": "Geräte-ID",
+	"deviceName": "Gerät Name",
+	"edit": "bearbeiten",
 	"emailInput_email": "E-Mail",
 	"emailInput_invalid_email": "Ungültige E-Mail",
 	"emailInput_valid_email": "Gültige E-Mail",
+	"modal_deviceName_tooltip": "Ändern Sie den in den Objekten angezeigten Gerätenamen.",
+	"modal_edit_titel": "Ändern Sie den Namen von %s",
+	"settings_devices": "Alle Geräte",
 	"settings_interval": "Intervall",
 	"settings_interval_tooltip": "Hier können Sie das Abfrageintervall für den Adapter einstellen. Die Standardeinstellung ist 60 Sekunden.",
 	"settings_login": "Anmeldung",
-	"settings_password": "Passwort"
+	"settings_password": "Passwort",
+	"settings_token": "Token-Informationen"
 }

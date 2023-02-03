@@ -1,19 +1,73 @@
 import React from 'react';
-import { useI18n } from 'iobroker-react/hooks';
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Tooltip, Typography } from '@mui/material';
 import { Maps } from './Maps';
-import { Pets } from '@mui/icons-material';
-import WifiIcon from '@mui/icons-material/Wifi';
-import TapAndPlayIcon from '@mui/icons-material/TapAndPlay';
-import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
+import {
+	Battery20,
+	Battery30,
+	Battery50,
+	Battery60,
+	Battery80,
+	Battery90,
+	BatteryCharging20,
+	BatteryCharging30,
+	BatteryCharging50,
+	BatteryCharging60,
+	BatteryCharging80,
+	BatteryCharging90,
+	BatteryChargingFull,
+	BatteryFull,
+	CheckCircle,
+	Error,
+	Pets,
+	SatelliteAlt,
+	TapAndPlay,
+	Wifi,
+} from '@mui/icons-material';
 import { ItemProps } from '../tab';
+import { useI18n } from 'iobroker-react/hooks';
 
 interface PetCardProps {
 	item: ItemProps;
 }
 
 export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
-	const { translate: _ } = useI18n();
+	const { translate: t } = useI18n();
+	const handleChargingState = () => {
+		if (item.charging_state) {
+			if (item.battery) {
+				if (item.battery === 100)
+					return <BatteryChargingFull sx={{ color: '#48ff00', paddingBottom: '5px' }} />;
+				if (item.battery >= 90 && item.battery < 100)
+					return <BatteryCharging90 sx={{ color: '#40ff00', paddingBottom: '5px' }} />;
+				if (item.battery >= 80 && item.battery < 90)
+					return <BatteryCharging80 sx={{ color: '#f7ff00', paddingBottom: '5px' }} />;
+				if (item.battery >= 60 && item.battery < 80)
+					return <BatteryCharging60 sx={{ color: '#ffcc00', paddingBottom: '5px' }} />;
+				if (item.battery >= 50 && item.battery < 60)
+					return <BatteryCharging50 sx={{ color: '#ff5900', paddingBottom: '5px' }} />;
+				if (item.battery >= 30 && item.battery < 50)
+					return <BatteryCharging30 sx={{ color: '#fd4a2a', paddingBottom: '5px' }} />;
+				if (item.battery >= 20 && item.battery < 30)
+					return <BatteryCharging20 sx={{ color: '#ff0000', paddingBottom: '5px' }} />;
+			}
+		} else {
+			if (item.battery) {
+				if (item.battery >= 20 && item.battery < 30)
+					return <Battery20 sx={{ color: '#ff0000', paddingBottom: '5px' }} />;
+				if (item.battery >= 30 && item.battery < 50)
+					return <Battery30 sx={{ color: '#fd4a2a', paddingBottom: '5px' }} />;
+				if (item.battery >= 50 && item.battery < 60)
+					return <Battery50 sx={{ color: '#ff5900', paddingBottom: '5px' }} />;
+				if (item.battery >= 60 && item.battery < 80)
+					return <Battery60 sx={{ color: '#ffcc00', paddingBottom: '5px' }} />;
+				if (item.battery >= 80 && item.battery < 90)
+					return <Battery80 sx={{ color: '#f7ff00', paddingBottom: '5px' }} />;
+				if (item.battery >= 90 && item.battery < 100)
+					return <Battery90 sx={{ color: '#40ff00', paddingBottom: '5px' }} />;
+				if (item.battery === 100) return <BatteryFull sx={{ color: '#48ff00', paddingBottom: '5px' }} />;
+			}
+		}
+	};
 
 	return (
 		<React.Fragment>
@@ -50,15 +104,14 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 							fontSize: '20px',
 						}}
 					>
-						{item.id}
+						{item.name ? item.name : item.id}
 					</Typography>
 					<Pets />
 				</CardContent>
 				<CardMedia
 					component="img"
 					image="images/pets.png"
-					// image="https://t4.ftcdn.net/jpg/03/33/41/39/360_F_333413930_c2GjjOCNl0TtbAQDX6VIlKfcBdHEbya3.jpg"
-					alt="green iguana"
+					alt="pets.png"
 					sx={{
 						height: '230px',
 						width: '97.7%',
@@ -133,71 +186,30 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 							component="div"
 							sx={{
 								marginTop: '5px',
-								// marginRight: '15px',
-								// paddingRight: '15px',
 							}}
 						>
-							latitude:
+							Latitude:
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginRight: '15px',
-							// 	paddingRight: '15px',
-							// }}
-						>
-							longitude:
+						<Typography gutterBottom color="text.secondary">
+							Longitude:
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginRight: '15px',
-							// 	paddingRight: '15px',
-							// }}
-						>
-							radius:
+						<Typography gutterBottom color="text.secondary">
+							Radius:
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginRight: '15px',
-							// 	paddingRight: '15px',
-							// }}
-						>
-							last seen:
+						<Typography gutterBottom color="text.secondary">
+							Last Seen:
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginRight: '15px',
-							// 	paddingRight: '15px',
-							// }}
-						>
+						<Typography gutterBottom color="text.secondary">
 							Battery:
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginRight: '15px',
-							// 	paddingRight: '15px',
-							// }}
-						>
-							At Home:
+						<Typography gutterBottom color="text.secondary">
+							Home:
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginRight: '15px',
-							// 	paddingRight: '15px',
-							// }}
-						>
-							connection:
+						<Typography gutterBottom color="text.secondary">
+							Status:
+						</Typography>
+						<Typography gutterBottom color="text.secondary">
+							Connection:
 						</Typography>
 					</Box>
 					<Box
@@ -225,71 +237,48 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 						>
 							{item.latlong ? item.latlong[0] : 'loading...'}
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginLeft: '15px',
-							// 	paddingLeft: '15px',
-							// }}
-						>
+						<Typography gutterBottom color="text.secondary">
 							{item.latlong ? item.latlong[1] : 'loading...'}
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginLeft: '15px',
-							// 	paddingLeft: '15px',
-							// }}
-						>
+						<Typography gutterBottom color="text.secondary">
 							{item.radius ? `${item.radius}m` : 'loading...'}
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginLeft: '15px',
-							// 	paddingLeft: '15px',
-							// }}
-						>
+						<Typography gutterBottom color="text.secondary">
 							{item.lastReceived ? item.lastReceived : 'loading...'}
 						</Typography>
 						<Typography
 							gutterBottom
 							color="text.secondary"
-							// sx={{
-							// 	marginLeft: '15px',
-							// 	paddingLeft: '15px',
-							// }}
+							sx={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}
 						>
-							{item.battery ? `${item.battery}%` : 'loading...'}
+							{item.battery ? `${item.battery}%` : 'loading...'}{' '}
+							{item.battery ? handleChargingState() : ''}
 						</Typography>
-
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginLeft: '15px',
-							// 	paddingLeft: '15px',
-							// }}
-						>
+						<Typography gutterBottom color="text.secondary">
 							{item.power_saving ? 'Yes' : 'No'}
 						</Typography>
-						<Typography
-							gutterBottom
-							color="text.secondary"
-							// sx={{
-							// 	marginLeft: '15px',
-							// 	paddingLeft: '15px',
-							// }}
-						>
-							{item.connection === 'GPS' ? (
-								<SatelliteAltIcon />
-							) : item.connection === 'KNOWN_WIFI' ? (
-								<WifiIcon />
+						<Typography gutterBottom color="text.secondary">
+							{item.state === 'OPERATIONAL' ? (
+								<Tooltip title={item.state} arrow placement={'right'}>
+									<CheckCircle sx={{ color: 'success.main' }} />
+								</Tooltip>
 							) : (
-								<TapAndPlayIcon />
+								<Tooltip title={item.state} arrow placement={'right'}>
+									<Error sx={{ color: 'warning.main' }} />
+								</Tooltip>
+							)}
+						</Typography>
+						<Typography gutterBottom color="text.secondary">
+							{item.connection === 'GPS' ? (
+								<SatelliteAlt />
+							) : item.connection === 'KNOWN_WIFI' ? (
+								<Wifi />
+							) : (
+								<TapAndPlay />
 							)}
 						</Typography>
 					</Box>

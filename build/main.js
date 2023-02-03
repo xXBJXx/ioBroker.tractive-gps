@@ -18,10 +18,12 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var utils = __toESM(require("@iobroker/adapter-core"));
-var import_register = require("source-map-support/register");
 var import_axios = __toESM(require("axios"));
 var import_cron = require("cron");
 var import_object_definition = require("./lib/object_definition");
+var import_source_map_support = __toESM(require("source-map-support"));
+var import_Helper = require("./lib/Helper");
+import_source_map_support.default.install();
 class TractiveGPS extends utils.Adapter {
   constructor(options = {}) {
     super({
@@ -30,6 +32,7 @@ class TractiveGPS extends utils.Adapter {
     });
     this.on("ready", this.onReady.bind(this));
     this.on("stateChange", this.onStateChange.bind(this));
+    this.on("message", this.onMessage.bind(this));
     this.on("unload", this.onUnload.bind(this));
     this.requestTimer = null;
     this.interval = 6e4;
@@ -45,11 +48,24 @@ class TractiveGPS extends utils.Adapter {
       positions: [],
       device_pos_report: []
     };
+    this.secret = "";
   }
   async onReady() {
     this.interval = this.config.interval * 1e3 + Math.floor(Math.random() * 100);
     this.setState("info.connection", false, true);
+    const systemObject = await this.getForeignObjectAsync("system.config", "meta");
+    if (systemObject) {
+      this.secret = systemObject.native.secret;
+    }
     if (this.config.email && this.config.password) {
+      if (this.config.access_token.startsWith(`$/aes-192-cbc:`)) {
+        this.writeLog(`Decrypting access_token`, "debug");
+        await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+          native: {
+            access_token: (0, import_Helper.encrypt)(this.secret, this.decrypt(this.config.access_token))
+          }
+        });
+      }
       if (this.config.user_id && this.config.expires_at > 0 && this.config.access_token) {
         const now = Math.round(Date.now() / 1e3);
         if (this.config.expires_at < now) {
@@ -188,20 +204,58 @@ class TractiveGPS extends utils.Adapter {
   }
   async createStates() {
     for (const device of this.allData.trackers) {
-      await this.extendObjectAsync(device._id, {
-        type: "device",
-        common: {
-          name: device._id
-        },
-        native: {}
-      });
-      await this.extendObjectAsync(`${device._id}.trackers`, {
-        type: "channel",
-        common: {
-          name: "trackers"
-        },
-        native: {}
-      });
+      if (this.config.nameArray.length > 0) {
+        console.log("this.config.nameArray", this.config.nameArray);
+        for (const object of this.config.nameArray) {
+          if (object.id === device._id) {
+            await this.extendObjectAsync(device._id, {
+              type: "device",
+              common: {
+                name: object.name
+              },
+              native: {}
+            });
+            await this.extendObjectAsync(`${device._id}.trackers`, {
+              type: "channel",
+              common: {
+                name: "trackers"
+              },
+              native: {}
+            });
+            await this.extendObjectAsync(`${device._id}.trackers.name`, {
+              type: "state",
+              common: {
+                name: "name",
+                desc: "name of the tracker",
+                type: "string",
+                role: "text",
+                read: true,
+                write: false
+              },
+              native: {}
+            });
+            await this.setStateAsync(`${device._id}.trackers.name`, {
+              val: object.name,
+              ack: true
+            });
+          }
+        }
+      } else {
+        await this.extendObjectAsync(device._id, {
+          type: "device",
+          common: {
+            name: device._id
+          },
+          native: {}
+        });
+        await this.extendObjectAsync(`${device._id}.trackers`, {
+          type: "channel",
+          common: {
+            name: "trackers"
+          },
+          native: {}
+        });
+      }
       for (const [key] of Object.entries(device)) {
         const common = import_object_definition.stateAttrb[key];
         if (common) {
@@ -615,6 +669,16 @@ class TractiveGPS extends utils.Adapter {
       }
     }
   }
+  async onMessage(obj) {
+    if (typeof obj === "object" && obj.message) {
+      if (obj.command === "refreshToken") {
+        this.writeLog(`[Adapter v.${this.version} onMessage] refresh the Token`, "debug");
+        await this.getAccessToken();
+        if (obj.callback)
+          this.sendTo(obj.from, obj.command, "su", obj.callback);
+      }
+    }
+  }
   async onUnload(callback) {
     try {
       this.writeLog(`[Adapter v.${this.version} onUnload] Adapter stopped`, "debug");
@@ -638,10 +702,11 @@ class TractiveGPS extends utils.Adapter {
       },
       data: {
         platform_email: this.config.email,
-        platform_token: this.decrypt(this.config.password),
+        platform_token: (0, import_Helper.decrypt)(this.secret, this.config.password),
         grant_type: "tractive"
       }
     };
+    console.log("options", options);
     try {
       const response = await (0, import_axios.default)(url, options);
       console.log("response", response);
@@ -655,7 +720,7 @@ class TractiveGPS extends utils.Adapter {
         if (response.data) {
           const obj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
           if (obj) {
-            obj.native.access_token = this.encrypt(response.data.access_token);
+            obj.native.access_token = (0, import_Helper.encrypt)(this.secret, response.data.access_token);
             obj.native.user_id = response.data.user_id;
             obj.native.expires_at = response.data.expires_at;
             this.allData.userInfo.user_id = response.data.user_id;

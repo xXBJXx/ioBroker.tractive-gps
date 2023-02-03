@@ -46,7 +46,7 @@
 		"connectionType": "local",
 		"dataSource": "poll",
 		"materializeTab": true,
-		"messagebox": false,
+		"messagebox": true,
 		"singleton": true,
 		"stopBeforeUpdate": true,
 		"adminUI": {
@@ -95,7 +95,8 @@
 		"password": "",
 		"access_token": "",
 		"expires_at": 0,
-		"user_id": ""
+		"user_id": "",
+		"nameArray": []
 	},
 	"objects": [],
 	"instanceObjects": [

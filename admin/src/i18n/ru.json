@@ -1,9 +1,23 @@
 {
+	"actions": "Действия",
+	"apiToken_accessToken": "Токен доступа",
+	"apiToken_refresh": "Обновить",
+	"apiToken_refreshed": "Сервером был сгенерирован новый токен API.",
+	"cancel": "отменить",
+	"date/time": "Дата / время",
+	"dateTime_token_expires_tooltip": "Срок действия токена истекает в",
+	"deviceID": "Идентификатор устройства",
+	"deviceName": "Имя устройства",
+	"edit": "редактировать",
 	"emailInput_email": "Электронная почта",
 	"emailInput_invalid_email": "Неверный email",
 	"emailInput_valid_email": "Действительная электронная почта",
+	"modal_deviceName_tooltip": "Измените имя устройства, отображаемое в объектах.",
+	"modal_edit_titel": "Изменить имя %s",
+	"settings_devices": "Все устройства",
 	"settings_interval": "интервал",
 	"settings_interval_tooltip": "Здесь можно задать интервал опроса адаптера. По умолчанию установлено значение 60 секунд.",
 	"settings_login": "Вход в систему",
-	"settings_password": "Пароль"
+	"settings_password": "Пароль",
+	"settings_token": "Информация о токене"
 }

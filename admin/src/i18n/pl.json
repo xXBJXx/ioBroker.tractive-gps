@@ -1,9 +1,23 @@
 {
+	"actions": "Działania",
+	"apiToken_accessToken": "Token dostępu",
+	"apiToken_refresh": "Odśwież",
+	"apiToken_refreshed": "Nowy token API został wygenerowany przez serwer.",
+	"cancel": "anulować",
+	"date/time": "Data / Godzina",
+	"dateTime_token_expires_tooltip": "Token wygasa w dniu",
+	"deviceID": "Identyfikator urządzenia",
+	"deviceName": "Nazwa urządzenia",
+	"edit": "edytuj",
 	"emailInput_email": "E-mail",
 	"emailInput_invalid_email": "Nieprawidłowy e-mail",
 	"emailInput_valid_email": "Ważny e-mail",
+	"modal_deviceName_tooltip": "Zmień nazwę urządzenia wyświetlaną w obiektach.",
+	"modal_edit_titel": "Zmień nazwę %s",
+	"settings_devices": "Wszystkie urządzenia",
 	"settings_interval": "interwał",
 	"settings_interval_tooltip": "Tutaj można ustawić interwał pollingu dla adaptera. Domyślnym ustawieniem jest 60 sekund.",
 	"settings_login": "Login",
-	"settings_password": "Hasło"
+	"settings_password": "Hasło",
+	"settings_token": "Informacje o tokenach"
 }

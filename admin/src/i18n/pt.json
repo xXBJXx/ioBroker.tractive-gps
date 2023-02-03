@@ -1,9 +1,23 @@
 {
+	"actions": "Acções",
+	"apiToken_accessToken": "Ficha de Acesso",
+	"apiToken_refresh": "Actualizar",
+	"apiToken_refreshed": "Um novo token API foi gerado pelo servidor.",
+	"cancel": "cancelar",
+	"date/time": "Data / Hora",
+	"dateTime_token_expires_tooltip": "O Token expira em",
+	"deviceID": "Identificação do dispositivo",
+	"deviceName": "Nome do dispositivo",
+	"edit": "editar",
 	"emailInput_email": "Correio electrónico",
 	"emailInput_invalid_email": "E-mail inválido",
 	"emailInput_valid_email": "E-mail válido",
+	"modal_deviceName_tooltip": "Alterar o nome do dispositivo apresentado nos objectos.",
+	"modal_edit_titel": "Alterar o nome de %s",
+	"settings_devices": "Todos os dispositivos",
 	"settings_interval": "intervalo",
 	"settings_interval_tooltip": "Aqui pode definir o intervalo de sondagem para o adaptador. A definição por defeito é de 60 segundos.",
 	"settings_login": "Login",
-	"settings_password": "Senha"
+	"settings_password": "Senha",
+	"settings_token": "Informação sobre o Token"
 }

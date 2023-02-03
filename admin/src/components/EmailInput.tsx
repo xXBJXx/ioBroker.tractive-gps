@@ -30,12 +30,7 @@ export const EmailInput: React.FC<EmailInputProps> = ({ settings, onChange }): J
 	};
 
 	return (
-		<FormControl
-			error={error}
-			sx={{
-				width: '300px',
-			}}
-		>
+		<FormControl error={error}>
 			<TextField label={t('emailInput_email')} value={email} onChange={handleChange} />
 			{error && <FormHelperText>{t('emailInput_invalid_email')}</FormHelperText>}
 			{valid && <FormHelperText>{t('emailInput_valid_email')}</FormHelperText>}

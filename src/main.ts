@@ -2,12 +2,15 @@
 // you need to create an adapter
 import * as utils from '@iobroker/adapter-core';
 // Load your modules here, e.g.:
-import 'source-map-support/register';
+// import 'source-map-support/register.js';
 import { TractiveDevice } from './types/TractiveDevice';
 import axios from 'axios';
 import { CronJob } from 'cron';
 import { stateAttrb } from './lib/object_definition';
+import sourceMapSupport from 'source-map-support';
+import { decrypt, encrypt } from './lib/Helper';
 
+sourceMapSupport.install();
 // Global variables here
 
 class TractiveGPS extends utils.Adapter {
@@ -17,6 +20,7 @@ class TractiveGPS extends utils.Adapter {
 	// private expires_at: number;
 
 	private readonly allData: TractiveDevice;
+	private secret: string;
 
 	public constructor(options: Partial<utils.AdapterOptions> = {}) {
 		super({
@@ -25,6 +29,7 @@ class TractiveGPS extends utils.Adapter {
 		});
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
+		this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 		this.requestTimer = null;
 		this.interval = 60000;
@@ -40,6 +45,7 @@ class TractiveGPS extends utils.Adapter {
 			positions: [],
 			device_pos_report: [],
 		};
+		this.secret = '';
 	}
 
 	/**
@@ -51,9 +57,21 @@ class TractiveGPS extends utils.Adapter {
 		this.interval = this.config.interval * 1000 + Math.floor(Math.random() * 100);
 		// Reset the connection indicator during startup
 		this.setState('info.connection', false, true);
-
+		const systemObject = await this.getForeignObjectAsync('system.config', 'meta');
+		if (systemObject) {
+			this.secret = systemObject.native.secret;
+		}
 		// check if the access data are available
 		if (this.config.email && this.config.password) {
+			if (this.config.access_token.startsWith(`$/aes-192-cbc:`)) {
+				this.writeLog(`Decrypting access_token`, 'debug');
+				await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+					native: {
+						access_token: encrypt(this.secret, this.decrypt(this.config.access_token)),
+					},
+				});
+			}
+
 			// check if user_id and expires_at is greater than 0 and access_token is present
 			if (this.config.user_id && this.config.expires_at > 0 && this.config.access_token) {
 				// check if expires_at is smaller than now
@@ -216,22 +234,65 @@ class TractiveGPS extends utils.Adapter {
 		for (const device of this.allData.trackers) {
 			// console.log('device', device);
 			// create the device channel
-			await this.extendObjectAsync(device._id, {
-				type: 'device',
-				common: {
-					name: device._id,
-				},
-				native: {},
-			});
 
-			// create the channel for the device
-			await this.extendObjectAsync(`${device._id}.trackers`, {
-				type: 'channel',
-				common: {
-					name: 'trackers',
-				},
-				native: {},
-			});
+			if (this.config.nameArray.length > 0) {
+				console.log('this.config.nameArray', this.config.nameArray);
+				for (const object of this.config.nameArray) {
+					if (object.id === device._id) {
+						await this.extendObjectAsync(device._id, {
+							type: 'device',
+							common: {
+								name: object.name,
+							},
+							native: {},
+						});
+
+						// create the channel for the device
+						await this.extendObjectAsync(`${device._id}.trackers`, {
+							type: 'channel',
+							common: {
+								name: 'trackers',
+							},
+							native: {},
+						});
+
+						await this.extendObjectAsync(`${device._id}.trackers.name`, {
+							type: 'state',
+							common: {
+								name: 'name',
+								desc: 'name of the tracker',
+								type: 'string',
+								role: 'text',
+								read: true,
+								write: false,
+							},
+							native: {},
+						});
+
+						await this.setStateAsync(`${device._id}.trackers.name`, {
+							val: object.name,
+							ack: true,
+						});
+					}
+				}
+			} else {
+				await this.extendObjectAsync(device._id, {
+					type: 'device',
+					common: {
+						name: device._id,
+					},
+					native: {},
+				});
+
+				// create the channel for the device
+				await this.extendObjectAsync(`${device._id}.trackers`, {
+					type: 'channel',
+					common: {
+						name: 'trackers',
+					},
+					native: {},
+				});
+			}
 
 			// create the states
 			for (const [key] of Object.entries(device)) {
@@ -743,6 +804,23 @@ class TractiveGPS extends utils.Adapter {
 			}
 		}
 	}
+
+	/**
+	 * If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
+	 * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
+	 * Using this method requires "common.messagebox" property to be set to true in io-package.json
+	 */
+	private async onMessage(obj: ioBroker.Message): Promise<void> {
+		if (typeof obj === 'object' && obj.message) {
+			if (obj.command === 'refreshToken') {
+				this.writeLog(`[Adapter v.${this.version} onMessage] refresh the Token`, 'debug');
+				await this.getAccessToken();
+				// Send response in callback if required
+				if (obj.callback) this.sendTo(obj.from, obj.command, 'su', obj.callback);
+			}
+		}
+	}
+
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 */
@@ -759,7 +837,7 @@ class TractiveGPS extends utils.Adapter {
 		}
 	}
 
-	private async getAccessToken() {
+	private async getAccessToken(): Promise<void> {
 		console.log('getAccessToken');
 		// get the access token
 		const url = 'https://graph.tractive.com/3/auth/token';
@@ -772,10 +850,11 @@ class TractiveGPS extends utils.Adapter {
 			},
 			data: {
 				platform_email: this.config.email,
-				platform_token: this.decrypt(this.config.password),
+				platform_token: decrypt(this.secret, this.config.password),
 				grant_type: 'tractive',
 			},
 		};
+		console.log('options', options);
 		try {
 			const response = await axios(url, options);
 			console.log('response', response);
@@ -790,7 +869,7 @@ class TractiveGPS extends utils.Adapter {
 					const obj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
 					if (obj) {
 						// write the data into the config
-						obj.native.access_token = this.encrypt(response.data.access_token);
+						obj.native.access_token = encrypt(this.secret, response.data.access_token);
 						obj.native.user_id = response.data.user_id;
 						obj.native.expires_at = response.data.expires_at;
 						this.allData.userInfo.user_id = response.data.user_id;

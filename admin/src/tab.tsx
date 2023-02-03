@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import type { Translations } from 'iobroker-react/i18n';
 import { IoBrokerApp } from 'iobroker-react/app';
-import { useGlobals, useIoBrokerState } from 'iobroker-react/hooks';
+import { useGlobals, useIoBrokerObject, useIoBrokerState } from 'iobroker-react/hooks';
 import { Grid, Stack } from '@mui/material';
 import { Logo } from 'iobroker-react';
 import { PetCard } from './components/PetCard';
 import { TractiveDevice } from '../../src/types/TractiveDevice';
-
 // Components are imported here
 
 // Load your translations
@@ -27,19 +26,24 @@ const translations: Translations = {
 
 export interface ItemProps {
 	id?: string;
+	name?: string;
 	latlong?: number[];
 	lastReceived?: string;
 	radius?: number;
 	battery?: number;
 	power_saving?: boolean;
+	state?: string;
+	charging_state?: boolean;
 	connection?: string;
 }
 const Root: React.FC = () => {
 	const { namespace } = useGlobals();
 	const [items, setItems] = React.useState<ItemProps[]>([]);
+	const [system] = useIoBrokerObject(`system.adapter.${namespace}`);
 	const [json] = useIoBrokerState({
 		id: `${namespace}.json`,
 	});
+
 	const item: ItemProps[] = [];
 
 	const handleJson = (json: TractiveDevice) => {
@@ -67,10 +71,14 @@ const Root: React.FC = () => {
 			const device = {
 				id: tracker._id,
 				power_saving: tracker.state_reason === 'POWER_SAVING',
+				state: tracker.state,
+				charging_state: tracker.charging_state === 'CHARGING',
 			};
 			const index = item.findIndex((item) => item.id === device.id);
 			if (index !== -1) {
 				item[index].power_saving = device.power_saving;
+				item[index].state = device.state;
+				item[index].charging_state = device.charging_state;
 			}
 		}
 	};
@@ -85,6 +93,30 @@ const Root: React.FC = () => {
 	React.useEffect(() => {
 		if (item.length > 0) setItems([...item]);
 	}, [item]);
+
+	React.useEffect(() => {
+		if (system) {
+			if (json) {
+				if (typeof json === 'string') {
+					const newJson = JSON.parse(json);
+					for (const key of Object.keys(newJson.trackers)) {
+						if (system) {
+							const device = {
+								id: newJson.trackers[key]?._id,
+								name: system.native.nameArray[key]?.name,
+							};
+							const index = items.findIndex((item) => item.id === device.id);
+							if (index !== -1) {
+								const newItems = [...items];
+								newItems[index].name = device.name;
+								setItems(newItems);
+							}
+						}
+					}
+				}
+			}
+		}
+	}, [system]);
 
 	return (
 		<React.Fragment>
