@@ -57,10 +57,19 @@ class TractiveGPS extends utils.Adapter {
 		this.interval = this.config.interval * 1000 + Math.floor(Math.random() * 100);
 		// Reset the connection indicator during startup
 		this.setState('info.connection', false, true);
-		const systemObject = await this.getForeignObjectAsync('system.config', 'meta');
-		if (systemObject) {
-			this.secret = systemObject.native.secret;
-		}
+		await this.getForeignObjectAsync('system.config', (err: any, obj: { native: { secret: string } }) => {
+			if (obj && obj.native && obj.native.secret) {
+				this.secret = obj.native.secret;
+				console.log('system.config.native.secret: ' + obj.native.secret);
+			} else {
+				// adapter.config.pwd = decrypt('Zgfr56gFe87jJOM', adapter.config.pwd);
+				console.log('Could not find system.config.native.secret!');
+				this.writeLog(`Could not find system.config.native.secret!`, 'error');
+			}
+		});
+		// if (systemObject) {
+		// 	this.secret = systemObject.native.secret;
+		// }
 		// check if the access data are available
 		if (this.config.email && this.config.password) {
 			if (this.config.access_token.startsWith(`$/aes-192-cbc:`)) {
