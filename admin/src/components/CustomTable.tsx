@@ -22,12 +22,12 @@ export const CustomTable: React.FC<CustomTableProps> = ({ settings, onChange }):
 
 	const handleOldValue = (value) => {
 		if (value) {
+			const newArray = [...items];
 			for (const key of Object.keys(value)) {
 				// search in value the _id and compare with the _id in settings.nameArray (id) and if not present then add it
 				const found = settings.nameArray.find((element) => element.id === value[key]._id);
 				if (!found) {
 					console.log('not found in nameArray', value[key]._id);
-					const newArray = [...items];
 					newArray.push({ id: value[key]._id, name: value[key]._id });
 					setItems(newArray);
 					onChange('nameArray', newArray);
@@ -39,7 +39,6 @@ export const CustomTable: React.FC<CustomTableProps> = ({ settings, onChange }):
 				const found = value.find((element) => element._id === settings.nameArray[key].id);
 				if (!found) {
 					console.log('not found json', settings.nameArray[key].id);
-					const newArray = [...items];
 					const index = newArray.findIndex((element) => element.id === settings.nameArray[key].id);
 					newArray.splice(index, 1);
 					setItems(newArray);
