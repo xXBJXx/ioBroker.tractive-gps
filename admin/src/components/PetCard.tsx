@@ -24,14 +24,12 @@ import {
 	Wifi,
 } from '@mui/icons-material';
 import { ItemProps } from '../tab';
-import { useI18n } from 'iobroker-react/hooks';
 
 interface PetCardProps {
 	item: ItemProps;
 }
 
 export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
-	const { translate: t } = useI18n();
 	const handleChargingState = () => {
 		if (item.charging_state) {
 			if (item.battery) {

@@ -5,7 +5,7 @@ const systemSecret = 'Zgfr56gFe87jJOM';
  * @param secret - Secret key
  * @param value - value to decrypt
  */
-export function decrypt(secret: string, value: string | undefined) {
+export function decrypt(secret: string, value: string | undefined): string {
 	if (value === undefined) {
 		value = secret;
 		secret = systemSecret;
@@ -22,7 +22,7 @@ export function decrypt(secret: string, value: string | undefined) {
  * @param secret - Secret key
  * @param value - value to encrypt
  */
-export function encrypt(secret: string, value: string | undefined) {
+export function encrypt(secret: string, value: string | undefined): string {
 	if (value === undefined) {
 		value = secret;
 		secret = systemSecret;

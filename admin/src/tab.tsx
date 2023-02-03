@@ -100,17 +100,15 @@ const Root: React.FC = () => {
 				if (typeof json === 'string') {
 					const newJson = JSON.parse(json);
 					for (const key of Object.keys(newJson.trackers)) {
-						if (system) {
-							const device = {
-								id: newJson.trackers[key]?._id,
-								name: system.native.nameArray[key]?.name,
-							};
-							const index = items.findIndex((item) => item.id === device.id);
-							if (index !== -1) {
-								const newItems = [...items];
-								newItems[index].name = device.name;
-								setItems(newItems);
-							}
+						const device = {
+							id: newJson.trackers[key]?._id,
+							name: system.native.nameArray[key]?.name,
+						};
+						const index = items.findIndex((item) => item.id === device.id);
+						if (index !== -1) {
+							const newItems = [...items];
+							newItems[index].name = device.name;
+							setItems(newItems);
 						}
 					}
 				}
