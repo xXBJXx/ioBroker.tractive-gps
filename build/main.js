@@ -51,17 +51,19 @@ class TractiveGPS extends utils.Adapter {
     this.secret = "";
   }
   async onReady() {
+    this.writeLog(`[Adapter v.${this.version} onReady] Starting adapter`, "debug");
     this.interval = this.config.interval * 1e3 + Math.floor(Math.random() * 100);
     this.setState("info.connection", false, true);
-    await this.getForeignObjectAsync("system.config", (err, obj) => {
-      if (obj && obj.native && obj.native.secret) {
-        this.secret = obj.native.secret;
-        console.log("system.config.native.secret: " + obj.native.secret);
-      } else {
-        console.log("Could not find system.config.native.secret!");
-        this.writeLog(`Could not find system.config.native.secret!`, "error");
-      }
-    });
+    const obj = await this.getForeignObjectAsync("system.config");
+    if (obj && obj.native && obj.native.secret) {
+      this.secret = obj.native.secret;
+      console.log("system.config.native.secret found!");
+      this.writeLog(`system.config.native.secret found!`, "debug");
+    } else {
+      console.log("Could not find system.config.native.secret!");
+      this.writeLog(`Could not find system.config.native.secret!`, "error");
+    }
+    console.log("this.secret: " + this.secret);
     if (this.config.email && this.config.password) {
       if (this.config.access_token.startsWith(`$/aes-192-cbc:`)) {
         this.writeLog(`Decrypting access_token`, "debug");

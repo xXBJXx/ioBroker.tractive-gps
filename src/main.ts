@@ -53,23 +53,22 @@ class TractiveGPS extends utils.Adapter {
 	 */
 	private async onReady(): Promise<void> {
 		// Initialize your adapter here
+		this.writeLog(`[Adapter v.${this.version} onReady] Starting adapter`, 'debug');
 		// convert the interval to milliseconds and add a random value between 0 and 100
 		this.interval = this.config.interval * 1000 + Math.floor(Math.random() * 100);
 		// Reset the connection indicator during startup
 		this.setState('info.connection', false, true);
-		await this.getForeignObjectAsync('system.config', (err: any, obj: { native: { secret: string } }) => {
-			if (obj && obj.native && obj.native.secret) {
-				this.secret = obj.native.secret;
-				console.log('system.config.native.secret: ' + obj.native.secret);
-			} else {
-				// adapter.config.pwd = decrypt('Zgfr56gFe87jJOM', adapter.config.pwd);
-				console.log('Could not find system.config.native.secret!');
-				this.writeLog(`Could not find system.config.native.secret!`, 'error');
-			}
-		});
-		// if (systemObject) {
-		// 	this.secret = systemObject.native.secret;
-		// }
+		const obj = await this.getForeignObjectAsync('system.config');
+		if (obj && obj.native && obj.native.secret) {
+			this.secret = obj.native.secret;
+			console.log('system.config.native.secret found!');
+			this.writeLog(`system.config.native.secret found!`, 'debug');
+		} else {
+			// adapter.config.pwd = decrypt('Zgfr56gFe87jJOM', adapter.config.pwd);
+			console.log('Could not find system.config.native.secret!');
+			this.writeLog(`Could not find system.config.native.secret!`, 'error');
+		}
+		console.log('this.secret: ' + this.secret);
 		// check if the access data are available
 		if (this.config.email && this.config.password) {
 			if (this.config.access_token.startsWith(`$/aes-192-cbc:`)) {
