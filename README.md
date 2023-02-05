@@ -69,8 +69,7 @@ Or you can use the tab **files** to upload the file. (see image below)\
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.1.0 (2023-02-05)
 * (xXBJXx) first release
 
 ## License
