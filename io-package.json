@@ -1,150 +1,152 @@
 {
-  "common": {
-    "name": "tractive-gps",
-    "version": "0.1.0",
-    "news": {
-      "0.1.0": {
-        "en": "first release",
-        "de": "erste veröffentlichung",
-        "ru": "первый релиз",
-        "pt": "primeiro lançamento",
-        "nl": "eerste vrijlating",
-        "fr": "première version",
-        "it": "primo rilascio",
-        "es": "primera liberación",
-        "pl": "pierwsze wydanie",
-        "uk": "перший реліз",
-        "zh-cn": "首次释放"
-      }
-    },
-    "title": "Tractive GPS",
-    "titleLang": {
-      "en": "Tractive GPS",
-      "de": "Tractive GPS",
-      "ru": "Tractive GPS",
-      "pt": "Tractive GPS",
-      "nl": "Tractive GPS",
-      "fr": "Tractive GPS",
-      "it": "Tractive GPS",
-      "es": "Tractive GPS",
-      "pl": "Tractive GPS",
-      "uk": "Tractive GPS",
-      "zh-cn": "Tractive GPS"
-    },
-    "desc": {
-      "en": "This adapter allows you to connect to the Tractive GPS service and retrieve the location of your pets.",
-      "de": "Mit diesem Adapter können Sie eine Verbindung zum Tractive-GPS-Dienst herstellen und den Standort Ihrer Haustiere abrufen.",
-      "ru": "Этот адаптер позволяет подключиться к службе Tractive GPS и получить данные о местонахождении ваших питомцев.",
-      "pt": "Este adaptador permite-lhe ligar-se ao serviço Tractive GPS e recuperar a localização dos seus animais de estimação.",
-      "nl": "Met deze adapter kunt u verbinding maken met de Tractive GPS service en de locatie van uw huisdieren opvragen.",
-      "fr": "Cet adaptateur vous permet de vous connecter au service GPS Tractive et de récupérer la localisation de vos animaux domestiques.",
-      "it": "Questo adattatore consente di connettersi al servizio Tractive GPS e recuperare la posizione dei tuoi animali domestici.",
-      "es": "Este adaptador le permite conectarse al servicio Tractive GPS y recuperar la ubicación de sus mascotas.",
-      "pl": "Ten adapter pozwala połączyć się z usługą Tractive GPS i otrzymać lokalizację swoich zwierząt.",
-      "uk": "Цей адаптер дозволяє підключитися до служби Tractive GPS і отримати місцезнаходження ваших тварин.",
-      "zh-cn": "此适配器允许您连接到Tractive GPS服务并检索您的宠物的位置。"
-    },
-    "authors": [
-      "xXBJXx <issi.dev.iobroker@gmail.com>"
-    ],
-    "keywords": [
-      "tractive",
-      "gps",
-      "geoposition",
-      "geolocation",
-      "tracking",
-      "dog",
-      "cat",
-      "pet"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "build/main.js",
-    "icon": "tractive-gps.png",
-    "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/xXBJXx/ioBroker.tractive-gps/main/admin/tractive-gps.png",
-    "readme": "https://github.com/xXBJXx/ioBroker.tractive-gps/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "geoposition",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "materializeTab": true,
-    "messagebox": true,
-    "singleton": true,
-    "stopBeforeUpdate": true,
-    "adminUI": {
-      "config": "materialize",
-      "tab": "materialize"
-    },
-    "adminTab": {
-      "singleton": true,
-      "name": {
-        "en": "Tractive GPS",
-        "de": "Tractive GPS",
-        "ru": "Tractive GPS",
-        "pt": "Tractive GPS",
-        "nl": "Tractive GPS",
-        "fr": "Tractive GPS",
-        "it": "Tractive GPS",
-        "es": "Tractive GPS",
-        "pl": "Tractive GPS",
-        "uk": "Tractive GPS",
-        "zh-cn": "Tractive GPS"
-      },
-      "link": "",
-      "fa-icon": "info"
-    },
-    "eraseOnUpload": true,
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.22"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=5.0.0"
-      }
-    ]
-  },
-  "plugins": {
-    "sentry": {
-      "dsn": "https://a3cc76cdce9f4e74b52390d60fd75278@o384969.ingest.sentry.io/4504555481530368"
-    }
-  },
-  "protectedNative": [],
-  "native": {
-    "interval": 60,
-    "email": "",
-    "password": "",
-    "access_token": "",
-    "expires_at": 0,
-    "user_id": "",
-    "nameArray": []
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": "Information"
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "role": "indicator.connected",
-        "name": "Device or service connected",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    }
-  ]
+	"common": {
+		"name": "tractive-gps",
+		"version": "0.1.1",
+		"news": {
+			"0.1.1": {
+				"en": "Dependencies updated",
+				"de": "Abhängigkeiten aktualisiert",
+				"ru": "Обновление зависимостей",
+				"pt": "Dependências atualizadas",
+				"nl": "Afhankelijkheden bijgewerkt",
+				"fr": "Dépendances mises à jour",
+				"it": "Dipendenze aggiornate",
+				"es": "Dependencias actualizadas",
+				"pl": "Zależności zaktualizowane",
+				"uk": "Залежності оновлено",
+				"zh-cn": "依赖项已更新"
+			},
+			"0.1.0": {
+				"en": "first release",
+				"de": "erste veröffentlichung",
+				"ru": "первый релиз",
+				"pt": "primeiro lançamento",
+				"nl": "eerste vrijlating",
+				"fr": "première version",
+				"it": "primo rilascio",
+				"es": "primera liberación",
+				"pl": "pierwsze wydanie",
+				"uk": "перший реліз",
+				"zh-cn": "首次释放"
+			}
+		},
+		"title": "Tractive GPS",
+		"titleLang": {
+			"en": "Tractive GPS",
+			"de": "Tractive GPS",
+			"ru": "Tractive GPS",
+			"pt": "Tractive GPS",
+			"nl": "Tractive GPS",
+			"fr": "Tractive GPS",
+			"it": "Tractive GPS",
+			"es": "Tractive GPS",
+			"pl": "Tractive GPS",
+			"uk": "Tractive GPS",
+			"zh-cn": "Tractive GPS"
+		},
+		"desc": {
+			"en": "This adapter allows you to connect to the Tractive GPS service and retrieve the location of your pets.",
+			"de": "Mit diesem Adapter können Sie eine Verbindung zum Tractive-GPS-Dienst herstellen und den Standort Ihrer Haustiere abrufen.",
+			"ru": "Этот адаптер позволяет подключиться к службе Tractive GPS и получить данные о местонахождении ваших питомцев.",
+			"pt": "Este adaptador permite-lhe ligar-se ao serviço Tractive GPS e recuperar a localização dos seus animais de estimação.",
+			"nl": "Met deze adapter kunt u verbinding maken met de Tractive GPS service en de locatie van uw huisdieren opvragen.",
+			"fr": "Cet adaptateur vous permet de vous connecter au service GPS Tractive et de récupérer la localisation de vos animaux domestiques.",
+			"it": "Questo adattatore consente di connettersi al servizio Tractive GPS e recuperare la posizione dei tuoi animali domestici.",
+			"es": "Este adaptador le permite conectarse al servicio Tractive GPS y recuperar la ubicación de sus mascotas.",
+			"pl": "Ten adapter pozwala połączyć się z usługą Tractive GPS i otrzymać lokalizację swoich zwierząt.",
+			"uk": "Цей адаптер дозволяє підключитися до служби Tractive GPS і отримати місцезнаходження ваших тварин.",
+			"zh-cn": "此适配器允许您连接到Tractive GPS服务并检索您的宠物的位置。"
+		},
+		"authors": ["xXBJXx <issi.dev.iobroker@gmail.com>"],
+		"keywords": ["tractive", "gps", "geoposition", "geolocation", "tracking", "dog", "cat", "pet"],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "build/main.js",
+		"icon": "tractive-gps.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/xXBJXx/ioBroker.tractive-gps/main/admin/tractive-gps.png",
+		"readme": "https://github.com/xXBJXx/ioBroker.tractive-gps/blob/main/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "geoposition",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"materializeTab": true,
+		"messagebox": true,
+		"singleton": true,
+		"stopBeforeUpdate": true,
+		"adminUI": {
+			"config": "materialize",
+			"tab": "materialize"
+		},
+		"adminTab": {
+			"singleton": true,
+			"name": {
+				"en": "Tractive GPS",
+				"de": "Tractive GPS",
+				"ru": "Tractive GPS",
+				"pt": "Tractive GPS",
+				"nl": "Tractive GPS",
+				"fr": "Tractive GPS",
+				"it": "Tractive GPS",
+				"es": "Tractive GPS",
+				"pl": "Tractive GPS",
+				"uk": "Tractive GPS",
+				"zh-cn": "Tractive GPS"
+			},
+			"link": "",
+			"fa-icon": "info"
+		},
+		"eraseOnUpload": true,
+		"dependencies": [
+			{
+				"js-controller": ">=3.3.22"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=5.0.0"
+			}
+		]
+	},
+	"plugins": {
+		"sentry": {
+			"dsn": "https://a3cc76cdce9f4e74b52390d60fd75278@o384969.ingest.sentry.io/4504555481530368"
+		}
+	},
+	"protectedNative": [],
+	"native": {
+		"interval": 60,
+		"email": "",
+		"password": "",
+		"access_token": "",
+		"expires_at": 0,
+		"user_id": "",
+		"nameArray": []
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "info",
+			"type": "channel",
+			"common": {
+				"name": "Information"
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.connection",
+			"type": "state",
+			"common": {
+				"role": "indicator.connected",
+				"name": "Device or service connected",
+				"type": "boolean",
+				"read": true,
+				"write": false,
+				"def": false
+			},
+			"native": {}
+		}
+	]
 }
