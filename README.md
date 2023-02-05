@@ -56,6 +56,12 @@ In the adapter configuration there are two setting options:
 ### Tab
 In the Tab all found devices are displayed with a map and some information about the device.\
 ![tab-tractive-gps.png](admin%2Fimages%2Ftab-tractive-gps.png)
+The image can also be replaced with the animal's own image.\
+To do this, a PNG file with the name of the tracker (e.g. ZSDLINVD.png) must be placed in the folder **iobroker-data/files/tractive-gps**.
+Or you can use the tab **files** to upload the file. (see image below)\
+**The recommended size for the image is 1920x1080 pixels.**\
+![files-tractive-gps.png](admin%2Fimages%2Ffiles-tractive-gps.png)
+
 
 
 ## Changelog

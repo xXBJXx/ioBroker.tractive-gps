@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Card, CardContent, CardMedia, Tooltip, Typography } from '@mui/material';
 import { Maps } from './Maps';
 import {
@@ -24,12 +24,39 @@ import {
 	Wifi,
 } from '@mui/icons-material';
 import { ItemProps } from '../tab';
+import { useConnection, useGlobals } from 'iobroker-react/hooks';
 
 interface PetCardProps {
 	item: ItemProps;
 }
 
 export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
+	const connection = useConnection();
+	const { namespace, adapter } = useGlobals();
+	const [data, setData] = useState('');
+
+	const getImage = React.useCallback(
+		async (item) => {
+			if (item) {
+				const exist = await connection.fileExists(adapter, `${item.id}.png`);
+				if (exist) {
+					console.log(`file ${item.id}.png exists`);
+					const base64 = await connection.readFile(adapter, `${item.id}.png`, true);
+					setData(base64.file);
+				} else {
+					console.error(`file ${item.id}.png does not exist`);
+				}
+			}
+		},
+		[connection, namespace],
+	);
+
+	React.useEffect(() => {
+		if (item !== undefined) {
+			getImage(item);
+		}
+	}, [item]);
+
 	const handleChargingState = () => {
 		if (item.charging_state) {
 			if (item.battery) {
@@ -108,7 +135,7 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 				</CardContent>
 				<CardMedia
 					component="img"
-					image="images/pets.png"
+					image={data ? `data:image/jpeg;base64,${data}` : 'images/pets.png'}
 					alt="pets.png"
 					sx={{
 						height: '230px',

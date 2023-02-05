@@ -824,7 +824,7 @@ class TractiveGPS extends utils.Adapter {
 				this.writeLog(`[Adapter v.${this.version} onMessage] refresh the Token`, 'debug');
 				await this.getAccessToken();
 				// Send response in callback if required
-				if (obj.callback) this.sendTo(obj.from, obj.command, 'su', obj.callback);
+				if (obj.callback) this.sendTo(obj.from, obj.command, 'Successful', obj.callback);
 			}
 		}
 	}
