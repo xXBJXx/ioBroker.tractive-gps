@@ -70,7 +70,7 @@ Or you can use the tab **files** to upload the file. (see image below)\
     ### **WORK IN PROGRESS**
 -->
 
-### 0.0.1 (2023-01-22)
+### **WORK IN PROGRESS**
 * (xXBJXx) first release
 
 ## License

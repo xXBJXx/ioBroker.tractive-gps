@@ -88,7 +88,7 @@
 			"dsn": "https://a3cc76cdce9f4e74b52390d60fd75278@o384969.ingest.sentry.io/4504555481530368"
 		}
 	},
-	"protectedNative": ["access_token"],
+	"protectedNative": [],
 	"native": {
 		"interval": 60,
 		"email": "",
