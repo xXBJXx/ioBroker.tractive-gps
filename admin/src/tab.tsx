@@ -4,7 +4,7 @@ import type { Translations } from 'iobroker-react/i18n';
 import { IoBrokerApp } from 'iobroker-react/app';
 import { useGlobals, useIoBrokerObject, useIoBrokerState } from 'iobroker-react/hooks';
 import { Grid, Stack } from '@mui/material';
-import { Logo } from 'iobroker-react';
+import { SettingsHeader } from 'iobroker-react';
 import { PetCard } from './components/PetCard';
 import { TractiveDevice } from '../../src/types/TractiveDevice';
 // Components are imported here
@@ -119,7 +119,7 @@ const Root: React.FC = () => {
 	return (
 		<React.Fragment>
 			<Stack spacing={2}>
-				<Logo
+				<SettingsHeader
 					classes={{
 						logo: 'logo',
 						buttons: 'buttons',

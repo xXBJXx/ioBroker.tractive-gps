@@ -65,7 +65,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
-    "iobroker-react": "git+https://git@github.com/xXBJXx/iobroker-react.git",
+    "iobroker-react": "git+https://git@github.com/xXBJXx/iobroker-react.git#IssiVersion",
     "leaflet": "^1.9.3",
     "mocha": "^10.2.0",
     "prettier": "^2.8.3",

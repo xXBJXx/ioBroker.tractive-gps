@@ -1,6 +1,6 @@
 import React from 'react';
 import { EmailInput } from './components/EmailInput';
-import { Logo, NumberInput, PasswordInput, useI18n } from 'iobroker-react';
+import { NumberInput, PasswordInput, SettingsHeader, useI18n } from 'iobroker-react';
 import { decrypt, encrypt } from 'iobroker-react/lib/shared/tools';
 import { Box, FormControl, Stack, Tab, Tabs } from '@mui/material';
 import { Spacer } from './components/Spacer';
@@ -91,7 +91,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ settings, secret, onCh
 				</Tabs>
 			</Box>
 			<Stack spacing={2}>
-				<Logo
+				<SettingsHeader
 					classes={{
 						logo: 'logo',
 					}}
