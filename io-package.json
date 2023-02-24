@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "tractive-gps",
-		"version": "0.1.1",
+		"version": "0.1.2",
 		"news": {
+			"0.1.2": {
+				"en": "Dependencies updated\nUI updated",
+				"de": "Abhängigkeiten aktualisiert\nUI aktualisiert",
+				"ru": "Обновлены зависимости\nОбновлен пользовательский интерфейс",
+				"pt": "Dependências actualizadas\nUI actualizado",
+				"nl": "Afhankelijkheden bijgewerkt\nUI bijgewerkt",
+				"fr": "Dépendances mises à jour\nMise à jour de l'interface utilisateur",
+				"it": "Dipendenze aggiornate\nInterfaccia utente aggiornata",
+				"es": "Dependencias actualizadas\nInterfaz de usuario actualizada",
+				"pl": "Zależności zaktualizowane\nUaktualniony interfejs użytkownika",
+				"uk": "Оновлені залежності\nОновлений інтерфейс користувача",
+				"zh-cn": "更新了依赖性\n更新了用户界面"
+			},
 			"0.1.1": {
 				"en": "Dependencies updated",
 				"de": "Abhängigkeiten aktualisiert",
