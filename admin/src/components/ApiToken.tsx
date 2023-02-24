@@ -2,7 +2,7 @@ import React from 'react';
 import { useConnection, useGlobals, useI18n } from 'iobroker-react/hooks';
 import { decrypt } from 'iobroker-react/lib/shared/tools';
 import { PasswordInput } from 'iobroker-react';
-import { Alert, Button, Dialog, DialogContent, FormControl } from '@mui/material';
+import { Alert, Box, Button, Dialog, DialogContent, FormControl, Typography } from '@mui/material';
 
 interface ApiTokenProps {
 	settings: ioBroker.AdapterConfig;
@@ -60,9 +60,17 @@ export const ApiToken: React.FC<ApiTokenProps> = ({ settings, secret }): JSX.Ele
 					}}
 				/>
 			</FormControl>
-			<Button variant="contained" onClick={() => refreshToken()}>
-				{t('apiToken_refresh')}
-			</Button>
+			<Box
+				sx={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'column', alignItems: 'center' }}
+			>
+				<Typography variant="body1" color="text.secondary" component="p">
+					{t('apiToken_refresh_description')}
+				</Typography>
+				<Button variant="contained" onClick={() => refreshToken()}>
+					{t('apiToken_refresh')}
+				</Button>
+			</Box>
+
 			<Dialog open={success} onClose={handleClose}>
 				<DialogContent>
 					<Alert variant="filled" severity="success">

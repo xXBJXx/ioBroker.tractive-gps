@@ -2,6 +2,7 @@
 	"actions": "Действия",
 	"apiToken_accessToken": "Токен доступа",
 	"apiToken_refresh": "Обновить",
+	"apiToken_refresh_description": "Обновление маркера вручную",
 	"apiToken_refreshed": "Сервером был сгенерирован новый токен API.",
 	"cancel": "отменить",
 	"date/time": "Дата / время",

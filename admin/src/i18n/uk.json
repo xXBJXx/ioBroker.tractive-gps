@@ -2,6 +2,7 @@
 	"actions": "Діяльність",
 	"apiToken_accessToken": "Токен доступу",
 	"apiToken_refresh": "Оновити",
+	"apiToken_refresh_description": "Оновлення токенів вручну",
 	"apiToken_refreshed": "Сервер згенерував новий токен API.",
 	"cancel": "скасувати",
 	"date/time": "Дата / Час",

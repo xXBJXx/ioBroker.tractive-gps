@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import type { Translations } from 'iobroker-react/i18n';
 import { IoBrokerApp } from 'iobroker-react/app';
-import { useGlobals, useIoBrokerObject, useIoBrokerState } from 'iobroker-react/hooks';
+import { useArray, useGlobals, useIoBrokerObject, useIoBrokerState } from 'iobroker-react/hooks';
 import { Grid, Stack } from '@mui/material';
 import { SettingsHeader } from 'iobroker-react';
 import { PetCard } from './components/PetCard';
@@ -38,14 +38,13 @@ export interface ItemProps {
 }
 const Root: React.FC = () => {
 	const { namespace } = useGlobals();
-	const [items, setItems] = React.useState<ItemProps[]>([]);
 	const [system] = useIoBrokerObject(`system.adapter.${namespace}`);
 	const [json] = useIoBrokerState({
 		id: `${namespace}.json`,
 	});
 
 	const item: ItemProps[] = [];
-
+	const { array: itemArray, set: setItemArray, findIndex: findIndexItemArray } = useArray<ItemProps>(item);
 	const handleJson = (json: TractiveDevice) => {
 		for (const tracker of json.device_pos_report) {
 			const device = {
@@ -91,7 +90,7 @@ const Root: React.FC = () => {
 	}, [json]);
 
 	React.useEffect(() => {
-		if (item.length > 0) setItems([...item]);
+		if (item.length > 0) setItemArray(item);
 	}, [item]);
 
 	React.useEffect(() => {
@@ -104,11 +103,11 @@ const Root: React.FC = () => {
 							id: newJson.trackers[key]?._id,
 							name: system.native.nameArray[key]?.name,
 						};
-						const index = items.findIndex((item) => item.id === device.id);
+						const index = findIndexItemArray((item) => item.id === device.id);
 						if (index !== -1) {
-							const newItems = [...items];
+							const newItems = [...itemArray];
 							newItems[index].name = device.name;
-							setItems(newItems);
+							setItemArray(newItems);
 						}
 					}
 				}
@@ -127,7 +126,7 @@ const Root: React.FC = () => {
 				/>
 			</Stack>
 			<Grid container>
-				{items.map((items) => {
+				{itemArray.map((items) => {
 					return <PetCard key={items.id} item={items} />;
 				})}
 			</Grid>

@@ -2,6 +2,7 @@
 	"actions": "Acties",
 	"apiToken_accessToken": "Toegangstoken",
 	"apiToken_refresh": "Vernieuwen",
+	"apiToken_refresh_description": "Handmatig bijwerken van token",
 	"apiToken_refreshed": "De server heeft een nieuw API-token gegenereerd.",
 	"cancel": "annuleren",
 	"date/time": "Datum / Tijd",

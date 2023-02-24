@@ -2,6 +2,7 @@
 	"actions": "Acciones",
 	"apiToken_accessToken": "Ficha de acceso",
 	"apiToken_refresh": "Actualizar",
+	"apiToken_refresh_description": "Actualización manual de fichas",
 	"apiToken_refreshed": "El servidor ha generado un nuevo token de API.",
 	"cancel": "cancelar",
 	"date/time": "Fecha / Hora",

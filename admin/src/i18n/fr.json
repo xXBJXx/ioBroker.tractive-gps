@@ -2,6 +2,7 @@
 	"actions": "Actions",
 	"apiToken_accessToken": "Jeton d'accès",
 	"apiToken_refresh": "Rafraîchir",
+	"apiToken_refresh_description": "Mise à jour manuelle des jetons",
 	"apiToken_refreshed": "Un nouveau jeton API a été généré par le serveur.",
 	"cancel": "annuler",
 	"date/time": "Date / Heure",

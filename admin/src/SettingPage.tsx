@@ -59,7 +59,6 @@ export const SettingPage: React.FC<SettingPageProps> = ({ settings, secret, onCh
 	const handleDecryption = (value: string) => {
 		if (secret) {
 			const decryptedValue = decrypt(secret, value);
-			console.log(decryptedValue);
 			return decryptedValue;
 		}
 		return value;

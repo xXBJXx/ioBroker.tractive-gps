@@ -24,7 +24,7 @@ import {
 	Wifi,
 } from '@mui/icons-material';
 import { ItemProps } from '../tab';
-import { useConnection, useGlobals } from 'iobroker-react/hooks';
+import { useConnection, useGlobals, useTimeout } from 'iobroker-react/hooks';
 
 interface PetCardProps {
 	item: ItemProps;
@@ -51,11 +51,17 @@ export const PetCard: React.FC<PetCardProps> = ({ item }): JSX.Element => {
 		[connection, namespace],
 	);
 
-	React.useEffect(() => {
+	useTimeout(() => {
 		if (item !== undefined) {
-			getImage(item);
+			getImage(item)
+				.then(() => {
+					console.log('getImage done');
+				})
+				.catch((err) => {
+					console.error(err);
+				});
 		}
-	}, [item]);
+	}, 200);
 
 	const handleChargingState = () => {
 		if (item.charging_state) {

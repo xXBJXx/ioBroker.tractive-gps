@@ -2,6 +2,7 @@
 	"actions": "行动",
 	"apiToken_accessToken": "访问令牌",
 	"apiToken_refresh": "刷新",
+	"apiToken_refresh_description": "手动令牌更新",
 	"apiToken_refreshed": "服务器生成了一个新的API令牌。",
 	"cancel": "取消",
 	"date/time": "日期/时间",
