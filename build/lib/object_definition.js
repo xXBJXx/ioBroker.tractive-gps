@@ -338,6 +338,16 @@ const stateAttrb = {
     read: true,
     write: false
   },
+  distance: {
+    name: "Distance",
+    desc: "Distance to ioBroker",
+    type: "number",
+    role: "value.gps.distance",
+    def: 0,
+    unit: "m",
+    read: true,
+    write: false
+  },
   speed: {
     name: "Speed",
     desc: "Speed in meters per second",
