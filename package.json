@@ -1,6 +1,6 @@
 {
   "name": "iobroker.tractive-gps",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "This adapter allows you to connect to the Tractive GPS service and retrieve the location of your pets.",
   "author": {
     "name": "xXBJXx",
