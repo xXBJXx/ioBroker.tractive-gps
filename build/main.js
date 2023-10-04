@@ -20,10 +20,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_axios = __toESM(require("axios"));
 var import_cron = require("cron");
-var import_geo_position = require("geo-position.ts");
+var import_object_definition = require("./lib/object_definition");
 var import_source_map_support = __toESM(require("source-map-support"));
 var import_Helper = require("./lib/Helper");
-var import_object_definition = require("./lib/object_definition");
 import_source_map_support.default.install();
 class TractiveGPS extends utils.Adapter {
   constructor(options = {}) {
@@ -178,17 +177,6 @@ class TractiveGPS extends utils.Adapter {
             val: value[1],
             ack: true
           });
-          let sysConfig = await this.getForeignObjectAsync("system.config");
-          if (sysConfig && sysConfig.common && sysConfig.common.longitude && sysConfig.common.latitude) {
-            let sysPoint = new import_geo_position.GeoPosition(sysConfig.common.latitude, sysConfig.common.longitude);
-            let petPoint = new import_geo_position.GeoPosition(value[0], value[1]);
-            await this.setStateAsync(`${device._id}.device_pos_report.distance`, {
-              val: Number(sysPoint.Distance(petPoint).toFixed(0)),
-              ack: true
-            });
-          } else {
-            this.writeLog("No gps coordinates of system found!", "warn");
-          }
         } else {
           if (typeof value === "object" && value !== null) {
             await this.setStateAsync(`${device._id}.device_pos_report.${key}`, {
@@ -364,11 +352,6 @@ class TractiveGPS extends utils.Adapter {
             await this.extendObjectAsync(`${device._id}.device_pos_report.longitude`, {
               type: "state",
               common: import_object_definition.stateAttrb["longitude"],
-              native: {}
-            });
-            await this.extendObjectAsync(`${device._id}.device_pos_report.distance`, {
-              type: "state",
-              common: import_object_definition.stateAttrb["distance"],
               native: {}
             });
           } else {
