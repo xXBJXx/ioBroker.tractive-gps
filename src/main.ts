@@ -5,7 +5,6 @@ import * as utils from '@iobroker/adapter-core';
 // import 'source-map-support/register.js';
 import axios from 'axios';
 import { CronJob } from 'cron';
-import { GeoPosition } from 'geo-position.ts';
 import sourceMapSupport from 'source-map-support';
 import { decrypt, encrypt } from './lib/Helper';
 import { stateAttrb } from './lib/object_definition';
@@ -200,21 +199,6 @@ class TractiveGPS extends utils.Adapter {
 						val: value[1],
 						ack: true,
 					});
-
-					let sysConfig = await this.getForeignObjectAsync('system.config');
-
-					if (sysConfig && sysConfig.common && sysConfig.common.longitude && sysConfig.common.latitude) {
-						let sysPoint = new GeoPosition(sysConfig.common.latitude, sysConfig.common.longitude);
-						let petPoint = new GeoPosition(value[0], value[1]);
-
-						await this.setStateAsync(`${device._id}.device_pos_report.distance`, {
-							val: Number(sysPoint.Distance(petPoint).toFixed(0)),
-							ack: true,
-						});
-					} else {
-						this.writeLog('No gps coordinates of system found!', "warn");
-					}
-
 				} else {
 					if (typeof value === 'object' && value !== null) {
 						await this.setStateAsync(`${device._id}.device_pos_report.${key}`, {
@@ -430,11 +414,6 @@ class TractiveGPS extends utils.Adapter {
 						await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.longitude`, {
 							type: 'state',
 							common: stateAttrb['longitude'],
-							native: {},
-						});
-						await this.extendObjectAsync(`${device._id}.device_pos_report.distance`, {
-							type: 'state',
-							common: stateAttrb['distance'],
 							native: {},
 						});
 					} else {

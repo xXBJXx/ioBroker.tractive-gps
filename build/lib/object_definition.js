@@ -104,42 +104,6 @@ const stateAttrb = {
     read: true,
     write: false
   },
-  prioritized_zone_entered_at: {
-    name: "Prioritized zone entered at",
-    desc: "Prioritized zone entered at",
-    type: "number",
-    role: "value",
-    def: null,
-    read: true,
-    write: false
-  },
-  prioritized_zone_last_seen_at: {
-    name: "Prioritized zone last seen at",
-    desc: "Prioritized zone last seen at",
-    type: "number",
-    role: "value",
-    def: null,
-    read: true,
-    write: false
-  },
-  prioritized_zone_type: {
-    name: "Prioritized zone type",
-    desc: "Prioritized zone type",
-    type: "string",
-    role: "value",
-    def: null,
-    read: true,
-    write: false
-  },
-  prioritized_zone_id: {
-    name: "Prioritized zone id",
-    desc: "Prioritized zone id",
-    type: "string",
-    role: "value",
-    def: null,
-    read: true,
-    write: false
-  },
   hw_status: {
     name: "Hardware Status",
     desc: "Hardware Status of the device",
@@ -371,16 +335,6 @@ const stateAttrb = {
     type: "number",
     role: "value.gps.longitude",
     def: 0,
-    read: true,
-    write: false
-  },
-  distance: {
-    name: "Distance",
-    desc: "Distance to ioBroker",
-    type: "number",
-    role: "value.gps.distance",
-    def: 0,
-    unit: "m",
     read: true,
     write: false
   },
