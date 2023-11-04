@@ -41,6 +41,10 @@ export interface Tracker {
 	charging_state: string;
 	battery_state: string;
 	power_saving_zone_id: string | null;
+	prioritized_zone_entered_at: number | null;
+	prioritized_zone_last_seen_at: number | null;
+	prioritized_zone_type: string,
+	prioritized_zone_id: string
 }
 
 export interface DeviceHwReport {
