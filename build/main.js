@@ -177,6 +177,17 @@ class TractiveGPS extends utils.Adapter {
             val: value[1],
             ack: true
           });
+          let sysConfig = await this.getForeignObjectAsync("system.config");
+          if (sysConfig && sysConfig.common && sysConfig.common.longitude && sysConfig.common.latitude) {
+            let sysPoint = new import_geo_position.GeoPosition(sysConfig.common.latitude, sysConfig.common.longitude);
+            let petPoint = new import_geo_position.GeoPosition(value[0], value[1]);
+            await this.setStateAsync(`${device._id}.device_pos_report.distance`, {
+              val: Number(sysPoint.Distance(petPoint).toFixed(0)),
+              ack: true
+            });
+          } else {
+            this.writeLog("No gps coordinates of system found!", "warn");
+          }
         } else {
           if (typeof value === "object" && value !== null) {
             await this.setStateAsync(`${device._id}.device_pos_report.${key}`, {
@@ -352,6 +363,11 @@ class TractiveGPS extends utils.Adapter {
             await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.longitude`, {
               type: "state",
               common: import_object_definition.stateAttrb["longitude"],
+              native: {}
+            });
+            await this.extendObjectAsync(`${device._id}.device_pos_report.distance`, {
+              type: "state",
+              common: import_object_definition.stateAttrb["distance"],
               native: {}
             });
           } else {

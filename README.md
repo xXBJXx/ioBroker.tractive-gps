@@ -79,8 +79,8 @@ Or you can use the tab **files** to upload the file. (see image below)\
 -->
 
 ### **WORK IN PROGRESS**
-
 -   (Scounger) bug fix: objects only if necessary
+-   (Scrounger) Calculate distance between ioBroker and tracker
 
 ### 0.1.2 (2023-02-24)
 
