@@ -20,7 +20,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_axios = __toESM(require("axios"));
 var import_cron = require("cron");
-var import_geo_position = require("geo-position.ts");
 var import_source_map_support = __toESM(require("source-map-support"));
 var import_Helper = require("./lib/Helper");
 var import_object_definition = require("./lib/object_definition");
@@ -227,21 +226,21 @@ class TractiveGPS extends utils.Adapter {
         console.log("this.config.nameArray", this.config.nameArray);
         for (const object of this.config.nameArray) {
           if (object.id === device._id) {
-            await this.extendObjectAsync(device._id, {
+            await this.setObjectNotExistsAsync(device._id, {
               type: "device",
               common: {
                 name: object.name
               },
               native: {}
             });
-            await this.extendObjectAsync(`${device._id}.trackers`, {
+            await this.setObjectNotExistsAsync(`${device._id}.trackers`, {
               type: "channel",
               common: {
                 name: "trackers"
               },
               native: {}
             });
-            await this.extendObjectAsync(`${device._id}.trackers.name`, {
+            await this.setObjectNotExistsAsync(`${device._id}.trackers.name`, {
               type: "state",
               common: {
                 name: "name",
@@ -260,14 +259,14 @@ class TractiveGPS extends utils.Adapter {
           }
         }
       } else {
-        await this.extendObjectAsync(device._id, {
+        await this.setObjectNotExistsAsync(device._id, {
           type: "device",
           common: {
             name: device._id
           },
           native: {}
         });
-        await this.extendObjectAsync(`${device._id}.trackers`, {
+        await this.setObjectNotExistsAsync(`${device._id}.trackers`, {
           type: "channel",
           common: {
             name: "trackers"
@@ -278,7 +277,7 @@ class TractiveGPS extends utils.Adapter {
       for (const [key] of Object.entries(device)) {
         const common = import_object_definition.stateAttrb[key];
         if (common) {
-          await this.extendObjectAsync(`${device._id}.trackers.${key}`, {
+          await this.setObjectNotExistsAsync(`${device._id}.trackers.${key}`, {
             type: "state",
             common,
             native: {}
@@ -292,7 +291,7 @@ class TractiveGPS extends utils.Adapter {
       }
     }
     for (const device of this.allData.tracker) {
-      await this.extendObjectAsync(`${device._id}.tracker`, {
+      await this.setObjectNotExistsAsync(`${device._id}.tracker`, {
         type: "channel",
         common: {
           name: "tracker"
@@ -302,7 +301,7 @@ class TractiveGPS extends utils.Adapter {
       for (const [key] of Object.entries(device)) {
         const common = import_object_definition.stateAttrb[key];
         if (common) {
-          await this.extendObjectAsync(`${device._id}.tracker.${key}`, {
+          await this.setObjectNotExistsAsync(`${device._id}.tracker.${key}`, {
             type: "state",
             common,
             native: {}
@@ -316,7 +315,7 @@ class TractiveGPS extends utils.Adapter {
       }
     }
     for (const device of this.allData.device_hw_report) {
-      await this.extendObjectAsync(`${device._id}.device_hw_report`, {
+      await this.setObjectNotExistsAsync(`${device._id}.device_hw_report`, {
         type: "channel",
         common: {
           name: "device hardware report"
@@ -326,7 +325,7 @@ class TractiveGPS extends utils.Adapter {
       for (const [key] of Object.entries(device)) {
         const common = import_object_definition.stateAttrb[key];
         if (common) {
-          await this.extendObjectAsync(`${device._id}.device_hw_report.${key}`, {
+          await this.setObjectNotExistsAsync(`${device._id}.device_hw_report.${key}`, {
             type: "state",
             common,
             native: {}
@@ -340,7 +339,7 @@ class TractiveGPS extends utils.Adapter {
       }
     }
     for (const device of this.allData.device_pos_report) {
-      await this.extendObjectAsync(`${device._id}.device_pos_report`, {
+      await this.setObjectNotExistsAsync(`${device._id}.device_pos_report`, {
         type: "channel",
         common: {
           name: "device position report"
@@ -351,17 +350,17 @@ class TractiveGPS extends utils.Adapter {
         const common = import_object_definition.stateAttrb[key];
         if (common) {
           if (key === "latlong") {
-            await this.extendObjectAsync(`${device._id}.device_pos_report.${key}`, {
+            await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.${key}`, {
               type: "state",
               common,
               native: {}
             });
-            await this.extendObjectAsync(`${device._id}.device_pos_report.latitude`, {
+            await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.latitude`, {
               type: "state",
               common: import_object_definition.stateAttrb["latitude"],
               native: {}
             });
-            await this.extendObjectAsync(`${device._id}.device_pos_report.longitude`, {
+            await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.longitude`, {
               type: "state",
               common: import_object_definition.stateAttrb["longitude"],
               native: {}
@@ -372,7 +371,7 @@ class TractiveGPS extends utils.Adapter {
               native: {}
             });
           } else {
-            await this.extendObjectAsync(`${device._id}.device_pos_report.${key}`, {
+            await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.${key}`, {
               type: "state",
               common,
               native: {}
@@ -386,7 +385,7 @@ class TractiveGPS extends utils.Adapter {
         }
       }
       for (const positionsDevice of this.allData.positions) {
-        await this.extendObjectAsync(`${device._id}.positions`, {
+        await this.setObjectNotExistsAsync(`${device._id}.positions`, {
           type: "channel",
           common: {
             name: "positions"
@@ -396,7 +395,7 @@ class TractiveGPS extends utils.Adapter {
         for (const [key] of Object.entries(positionsDevice)) {
           const common = import_object_definition.stateAttrb["positions"];
           if (common) {
-            await this.extendObjectAsync(`${device._id}.positions.${key}`, {
+            await this.setObjectNotExistsAsync(`${device._id}.positions.${key}`, {
               type: "state",
               common,
               native: {}
@@ -410,7 +409,7 @@ class TractiveGPS extends utils.Adapter {
         }
       }
     }
-    await this.extendObjectAsync(`json`, {
+    await this.setObjectNotExistsAsync(`json`, {
       type: "state",
       common: {
         name: "json",
