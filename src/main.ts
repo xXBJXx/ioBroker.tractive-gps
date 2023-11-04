@@ -432,7 +432,7 @@ class TractiveGPS extends utils.Adapter {
 							common: stateAttrb['longitude'],
 							native: {},
 						});
-						await this.extendObjectAsync(`${device._id}.device_pos_report.distance`, {
+						await this.setObjectNotExistsAsync(`${device._id}.device_pos_report.distance`, {
 							type: 'state',
 							common: stateAttrb['distance'],
 							native: {},
