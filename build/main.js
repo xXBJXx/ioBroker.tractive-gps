@@ -20,6 +20,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_axios = __toESM(require("axios"));
 var import_cron = require("cron");
+var import_geo_position = require("geo-position.ts");
 var import_source_map_support = __toESM(require("source-map-support"));
 var import_Helper = require("./lib/Helper");
 var import_object_definition = require("./lib/object_definition");
