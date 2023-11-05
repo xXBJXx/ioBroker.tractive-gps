@@ -72,7 +72,9 @@ Or you can use the tab **files** to upload the file. (see image below)\
 -->
 
 ### **WORK IN PROGRESS**
+* (Scrounger) fix for #4
 * (Scrounger) Calculate distance between ioBroker and tracker
+
 
 ### 0.1.2 (2023-02-24)
 * (xXBJXx) Dependencies updated
